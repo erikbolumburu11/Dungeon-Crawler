@@ -14,6 +14,8 @@ public class CharacterLocomotion : MonoBehaviour
     public float moveSpeed;
     const float moveSpeedMultiplier = 100; // Set move speed to 10 instead of 1000, just looks nicer.
 
+    public bool knockedBack;
+
     Vector2 moveDir;
 
     void Awake(){
@@ -22,10 +24,15 @@ public class CharacterLocomotion : MonoBehaviour
 
     void Update()
     {
-        rigidBody.velocity = moveDir * moveSpeed * Time.deltaTime * moveSpeedMultiplier;
         SetLookDirection();
 
         bodyAnimator.SetBool("Moving", moveDir.magnitude > 0);
+    }
+
+    void FixedUpdate() {
+        if(knockedBack) return;
+
+        rigidBody.velocity = moveDir * moveSpeed;
     }
 
     void SetLookDirection(){
