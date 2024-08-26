@@ -25,9 +25,12 @@ public class Health : MonoBehaviour
         if(TryGetComponent(out Knockback knockback)){
             knockback.Invoke(10f, hitByObject);
         }
+
+        ValueBarUI healthBar = GetComponentInChildren<ValueBarUI>();
+        if(healthBar != null && healthBar.CompareTag("Healthbar")) healthBar.UpdateDisplay(health, maxHealth);
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
-        if(other.CompareTag("Player Weapon")) Damage(10, other.gameObject);
+        if(other.CompareTag("Player Weapon")) Damage(20, other.gameObject);
     }
 }
