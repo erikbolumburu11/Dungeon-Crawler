@@ -38,15 +38,7 @@ public class PlayerBrain : MonoBehaviour
     }
 
     void CastAbility(InputAction.CallbackContext callbackContext){
-        if(TryGetComponent(out CharacterAbilities abilities)){
-            AbilityInfo ability = abilities.equippedAbilites[0];
-
-            AbilityCastData castData = new AbilityCastData(){
-                caster = gameObject,
-                abilityPrefab = ability.prefab
-            };
-
-            AbilityFactory.GetAbility(ability.abilityActionKey).Invoke(castData);
-        }
+        if(TryGetComponent(out CharacterAbilities abilities)) 
+            abilities.CastAbility(0);
     }
 }
