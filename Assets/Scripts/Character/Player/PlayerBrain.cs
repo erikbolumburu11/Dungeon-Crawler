@@ -8,13 +8,16 @@ public class PlayerBrain : MonoBehaviour
 
     [SerializeField] InputActionReference moveInput;
     [SerializeField] InputActionReference attackInput;
+    [SerializeField] InputActionReference castAbilityInput;
 
     void OnEnable(){
         attackInput.action.started += Attack;
+        castAbilityInput.action.started += CastAbility;
     }
 
     void OnDisable(){
         attackInput.action.started -= Attack;
+        castAbilityInput.action.started  -= CastAbility;
     }
 
     void Update()
@@ -31,6 +34,19 @@ public class PlayerBrain : MonoBehaviour
     void Attack(InputAction.CallbackContext callbackContext){
         if(TryGetComponent(out CharacterAttack characterAttack)){
             characterAttack.Attack();
+        }
+    }
+
+    void CastAbility(InputAction.CallbackContext callbackContext){
+        if(TryGetComponent(out CharacterAbilities abilities)){
+            AbilityInfo ability = abilities.equippedAbilites[0];
+
+            AbilityCastData castData = new AbilityCastData(){
+                caster = gameObject,
+                abilityPrefab = ability.prefab
+            };
+
+            AbilityFactory.GetAbility(ability.abilityActionKey).Invoke(castData);
         }
     }
 }

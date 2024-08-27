@@ -7317,6 +7317,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2022068553}
   - component: {fileID: 2022068558}
+  - component: {fileID: 2022068560}
   - component: {fileID: 2022068554}
   - component: {fileID: 2022068559}
   - component: {fileID: 2022068557}
@@ -7481,6 +7482,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveInput: {fileID: 4374599341200147908, guid: 2c33b4b590b860a4989d70af280e91fb, type: 3}
   attackInput: {fileID: -75945034504286770, guid: 2c33b4b590b860a4989d70af280e91fb, type: 3}
+  castAbilityInput: {fileID: 1356256928853043942, guid: 2c33b4b590b860a4989d70af280e91fb, type: 3}
 --- !u!114 &2022068559
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7496,6 +7498,20 @@ MonoBehaviour:
   weapon: {fileID: 1920944964}
   weaponLookOrbit: {fileID: 1005670968}
   weaponMouseFollow: {fileID: 1005670970}
+--- !u!114 &2022068560
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2022068552}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 144fb5e7004f4f54ba2dc9063d759ef8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  equippedAbilites:
+  - {fileID: 11400000, guid: 57af118823b4c704ea601a933bb695c4, type: 2}
 --- !u!1 &2044270254
 GameObject:
   m_ObjectHideFlags: 0
