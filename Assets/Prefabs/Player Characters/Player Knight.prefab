@@ -50,10 +50,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6514766183829116829, guid: c9374e69ef32c484fb620525e58257e4, type: 3}
       propertyPath: m_Name
-      value: Base Player
+      value: Player Knight
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 5326182240045125246, guid: c9374e69ef32c484fb620525e58257e4, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c9374e69ef32c484fb620525e58257e4, type: 3}
