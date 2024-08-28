@@ -8,21 +8,21 @@ public class PlayerBrain : MonoBehaviour
 
     [SerializeField] InputActionReference moveInput;
     [SerializeField] InputActionReference attackInput;
+    bool attackRequested;
     [SerializeField] InputActionReference castAbilityInput;
 
     void OnEnable(){
-        attackInput.action.started += Attack;
         castAbilityInput.action.started += CastAbility;
     }
 
     void OnDisable(){
-        attackInput.action.started -= Attack;
         castAbilityInput.action.started  -= CastAbility;
     }
 
     void Update()
     {
         Movement();
+        Attack();
     }
 
     void Movement(){
@@ -31,9 +31,11 @@ public class PlayerBrain : MonoBehaviour
         }
     }
 
-    void Attack(InputAction.CallbackContext callbackContext){
-        if(TryGetComponent(out CharacterAttack characterAttack)){
-            characterAttack.Attack();
+    void Attack(){
+        if(attackInput.action.IsPressed()){
+            if(TryGetComponent(out CharacterAttack characterAttack)){
+                characterAttack.Attack();
+            }
         }
     }
 

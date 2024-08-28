@@ -143,6 +143,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   health: 100
+  hitCooldown: 1
   onHitEvent:
     m_PersistentCalls:
       m_Calls:

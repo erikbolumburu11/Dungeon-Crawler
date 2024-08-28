@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class LookAtMouse : MonoBehaviour
 {
-    [SerializeField] float rotationOffset;
+    public float rotationOffset;
 
     [SerializeField] bool lerp;
     [SerializeField] float lerpSpeed;
@@ -20,7 +20,4 @@ public class LookAtMouse : MonoBehaviour
         transform.up = Vector2.Lerp(transform.up, rotatedDir, lerpSpeed);
     }
 
-    public float GetRotationOffset(){
-        return rotationOffset;
-    }
 }

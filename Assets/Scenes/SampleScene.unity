@@ -1330,10 +1330,6 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4328168782341897862, guid: 6c78634803b59c9479135970fb4e7c1f, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6444346010327309317, guid: 6c78634803b59c9479135970fb4e7c1f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 8
@@ -1373,10 +1369,6 @@ PrefabInstance:
     - target: {fileID: 6444346010327309317, guid: 6c78634803b59c9479135970fb4e7c1f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7191374935548684883, guid: 6c78634803b59c9479135970fb4e7c1f, type: 3}
-      propertyPath: m_Enabled
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

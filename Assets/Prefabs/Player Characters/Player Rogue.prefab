@@ -8,6 +8,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3164572794237338416, guid: c9374e69ef32c484fb620525e58257e4, type: 3}
+      propertyPath: equippedWeapon
+      value: 
+      objectReference: {fileID: 11400000, guid: 1d3ff839d0838d94392eaabebaf8590a, type: 2}
     - target: {fileID: 6159313495172074182, guid: c9374e69ef32c484fb620525e58257e4, type: 3}
       propertyPath: m_LocalPosition.x
       value: -11.054761
@@ -60,6 +64,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 1029235304, guid: 67a15bfc6fd0ecf4bad1bd3667a5e1e7, type: 3}
+    - target: {fileID: 8530560031611387644, guid: c9374e69ef32c484fb620525e58257e4, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 22100000, guid: bcb160c0d2248f045bdeb18afde4573c, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 5326182240045125246, guid: c9374e69ef32c484fb620525e58257e4, type: 3}

@@ -7,6 +7,8 @@ public class Health : MonoBehaviour
 {
     [SerializeField] int maxHealth;
     [SerializeField] int health;
+    bool canBeHit = true;
+    [SerializeField] float hitCooldown;
     [SerializeField] UnityEvent onHitEvent;
 
     void Start(){
@@ -17,20 +19,33 @@ public class Health : MonoBehaviour
         if(health <= 0) Destroy(gameObject);
     }
 
-    public void Damage(int damage, GameObject hitByObject){
-        health -= damage;
+    public void Damage(GameObject hitByObject){
+        if(!canBeHit) return;
+
+        WeaponInfo hitByWeaponInfo = hitByObject.GetComponent<WeaponBehaviour>().weaponInfo;
+        if(hitByWeaponInfo == null) return;
+
+        StartHitCooldown();
+
+        health -= hitByWeaponInfo.damage;
 
         onHitEvent.Invoke();
 
         if(TryGetComponent(out Knockback knockback)){
-            knockback.Invoke(10f, hitByObject);
+            knockback.Invoke(hitByWeaponInfo.knockbackForce, hitByObject);
         }
 
         ValueBarUI healthBar = GetComponentInChildren<ValueBarUI>();
         if(healthBar != null && healthBar.CompareTag("Healthbar")) healthBar.UpdateDisplay(health, maxHealth);
     }
 
+    IEnumerator StartHitCooldown(){
+        canBeHit = false;
+        yield return new WaitForSeconds(hitCooldown);
+        canBeHit = true;
+    }
+
     private void OnTriggerEnter2D(Collider2D other) {
-        if(other.CompareTag("Player Weapon")) Damage(20, other.gameObject);
+        if(other.CompareTag("Player Weapon")) Damage(other.gameObject);
     }
 }

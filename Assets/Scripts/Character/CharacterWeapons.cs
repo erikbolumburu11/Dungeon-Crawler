@@ -4,4 +4,46 @@ using UnityEngine;
 
 public class CharacterWeapons : MonoBehaviour
 {
+    [SerializeField] Animator weaponAnimator;
+    [SerializeField] WeaponInfo equippedWeapon;
+    GameObject instantiatedWeapon;
+    [SerializeField] Transform weaponHandlePoint;
+    [SerializeField] LookAtMouse weaponMouseFollow;
+
+    void Awake(){
+        if(equippedWeapon == null) return;
+        EquipWeapon(equippedWeapon);
+    }
+
+    void Update(){
+        SetWeaponMouseFollow();
+    }
+
+    public void SetWeaponMouseFollow(){
+        if(TryGetComponent(out CharacterAttack characterAttack)){
+            if(characterAttack.IsAttacking() && equippedWeapon.attackingLocksWeaponDir)
+                weaponMouseFollow.enabled = false;
+            else
+                weaponMouseFollow.enabled = true;
+        }
+    }
+
+    void EquipWeapon(WeaponInfo weaponInfo){
+        equippedWeapon = weaponInfo;
+        instantiatedWeapon = Instantiate(equippedWeapon.prefab, weaponHandlePoint);
+        weaponAnimator.runtimeAnimatorController = equippedWeapon.animator;
+        weaponMouseFollow.rotationOffset = equippedWeapon.weaponLookDirOffset;
+
+        foreach(WeaponBehaviour weaponBehaviour in instantiatedWeapon.GetComponentsInChildren<WeaponBehaviour>()){
+            weaponBehaviour.weaponInfo = weaponInfo;
+        }
+    }
+
+    public WeaponInfo GetEquippedWeaponInfo(){
+        return equippedWeapon;
+    }
+
+    public GameObject GetInstantiatedWeapon(){
+        return instantiatedWeapon;
+    }
 }

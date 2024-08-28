@@ -7,34 +7,44 @@ public class CharacterAttack : MonoBehaviour
     [SerializeField] GameObject weapon;
     Animator weaponAnimator;
     [SerializeField] GameObject weaponLookOrbit;
-    [SerializeField] LookAtMouse weaponMouseFollow;
-
-    bool isAttacking;
 
     void Start(){
         weaponAnimator = weapon.GetComponent<Animator>();
     }
 
-    void Update(){
-        isAttacking = weaponAnimator.GetCurrentAnimatorStateInfo(0).IsTag("Attack");
-        SetWeaponMouseFollow();
-    }
-
-    public void SetWeaponMouseFollow(){
-        if(isAttacking)
-            weaponMouseFollow.enabled = false;
-        else
-            weaponMouseFollow.enabled = true;
-    }
-
     public void Attack(){
-        if(isAttacking) return;
+        if(IsAttacking()) return;
 
-        StartCoroutine(LerpWeaponToAttackRotation(0.1f, 1));
-        weaponAnimator.SetTrigger("Attack");
+        // Use Equipped Weapon To Attack
+        if(TryGetComponent(out CharacterWeapons characterWeapons)){
+            StartCoroutine(LerpWeaponToAttackDirection(0.1f, 1));
+
+            WeaponInfo equippedWeapon = characterWeapons.GetEquippedWeaponInfo();
+
+            // Sprite Animation
+            if(equippedWeapon.hasSpriteAnimation){
+                if(characterWeapons.GetInstantiatedWeapon() != null){
+                    Animator weaponAnimator = characterWeapons.GetInstantiatedWeapon().GetComponent<Animator>();
+                    weaponAnimator.SetTrigger("Attack");
+                }
+            }
+            // Swing Animation
+            if(equippedWeapon.hasSwingAnimation){
+                weaponAnimator.SetTrigger("Attack");
+            }
+
+        }
+        // Use Body To Attack
+        else{
+
+        }
+
     }
 
-    IEnumerator LerpWeaponToAttackRotation(float time, float speed){
+    IEnumerator LerpWeaponToAttackDirection(float time, float speed){
+        CharacterWeapons characterWeapons = GetComponent<CharacterWeapons>();
+        if(characterWeapons == null) yield break;
+
         float elapsedTime = 0;
 
         Vector3 screenMousePos = Input.mousePosition;
@@ -46,7 +56,7 @@ public class CharacterAttack : MonoBehaviour
             worldMousePos.y - weaponLookOrbit.transform.position.y
         );
 
-        Vector2 rotatedDir = Quaternion.AngleAxis(weaponMouseFollow.GetRotationOffset(), Vector3.forward) * attackDir;
+        Vector2 rotatedDir = Quaternion.AngleAxis(characterWeapons.GetEquippedWeaponInfo().weaponLookDirOffset, Vector3.forward) * attackDir;
 
         while(elapsedTime < time){
             weaponLookOrbit.transform.up = Vector2.Lerp(transform.up, rotatedDir, speed);
@@ -59,5 +69,7 @@ public class CharacterAttack : MonoBehaviour
         yield return null;
     }
 
-
+    public bool IsAttacking(){
+        return weaponAnimator.GetCurrentAnimatorStateInfo(0).IsTag("Attack");
+    }
 }
