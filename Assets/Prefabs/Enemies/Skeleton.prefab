@@ -89,6 +89,7 @@ GameObject:
   - component: {fileID: 3985453329674931320}
   - component: {fileID: 4328168782341897862}
   - component: {fileID: 2380422295608324834}
+  - component: {fileID: 414413081434002217}
   m_Layer: 0
   m_Name: Skeleton
   m_TagString: Enemy
@@ -243,6 +244,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &414413081434002217
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 674737629572272871}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e770346bb0fae5b478b875bdf4d2bbfa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  team: 2
 --- !u!1 &744716109532400625
 GameObject:
   m_ObjectHideFlags: 0

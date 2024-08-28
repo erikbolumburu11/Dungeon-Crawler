@@ -33,6 +33,7 @@ public class CharacterWeapons : MonoBehaviour
         instantiatedWeapon = Instantiate(equippedWeapon.prefab, weaponHandlePoint);
         weaponAnimator.runtimeAnimatorController = equippedWeapon.animator;
         weaponMouseFollow.rotationOffset = equippedWeapon.weaponLookDirOffset;
+        instantiatedWeapon.AddComponent<TeamComponent>().team = GetComponent<TeamComponent>().team;
 
         foreach(WeaponBehaviour weaponBehaviour in instantiatedWeapon.GetComponentsInChildren<WeaponBehaviour>()){
             weaponBehaviour.weaponInfo = weaponInfo;

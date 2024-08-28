@@ -2,9 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WeaponBehaviour : MonoBehaviour
+public class MeleeWeaponBehaviour : WeaponBehaviour
 {
-    public WeaponInfo weaponInfo;
     void OpenHitbox(){
         BoxCollider2D weaponHitbox = GetComponentInChildren<BoxCollider2D>();
         if(weaponHitbox == null) return;

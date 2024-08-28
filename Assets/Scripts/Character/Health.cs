@@ -46,6 +46,13 @@ public class Health : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
-        if(other.CompareTag("Player Weapon")) Damage(other.gameObject);
+        if(other.TryGetComponent(out WeaponBehaviour weaponBehaviour)){
+            Team myTeam = GetComponent<TeamComponent>().team;
+            Team otherTeam = other.GetComponent<TeamComponent>().team;
+
+            if(myTeam != otherTeam || otherTeam == Team.NEUTRAL)
+                Damage(other.gameObject);
+        }
+
     }
 }

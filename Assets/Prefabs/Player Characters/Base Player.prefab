@@ -353,6 +353,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f2e9dc1fcbaeee43886dd8185f9e031, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponInfo: {fileID: 0}
 --- !u!1 &6366248940607721671
 GameObject:
   m_ObjectHideFlags: 0
@@ -398,6 +399,7 @@ GameObject:
   - component: {fileID: 3164572794237338416}
   - component: {fileID: 7184787975339859906}
   - component: {fileID: 3682284394228950163}
+  - component: {fileID: -1123132467989715612}
   - component: {fileID: 3713706906822433183}
   - component: {fileID: 4438623005909462821}
   - component: {fileID: 1805372477256369708}
@@ -486,7 +488,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weapon: {fileID: 4274488346194955253}
   weaponLookOrbit: {fileID: 8522983918886646645}
-  isAttacking: 0
 --- !u!114 &3682284394228950163
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -503,6 +504,19 @@ MonoBehaviour:
   bodySprite: {fileID: 8342833716192217563}
   moveSpeed: 6
   knockedBack: 0
+--- !u!114 &-1123132467989715612
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6514766183829116829}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e770346bb0fae5b478b875bdf4d2bbfa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  team: 1
 --- !u!114 &3713706906822433183
 MonoBehaviour:
   m_ObjectHideFlags: 0
