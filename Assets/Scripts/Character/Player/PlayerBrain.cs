@@ -8,7 +8,6 @@ public class PlayerBrain : MonoBehaviour
 
     [SerializeField] InputActionReference moveInput;
     [SerializeField] InputActionReference attackInput;
-    bool attackRequested;
     [SerializeField] InputActionReference castAbilityInput;
 
     void OnEnable(){

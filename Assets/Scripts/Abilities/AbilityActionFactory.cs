@@ -33,6 +33,7 @@ public static class AbilityFactory
             return ability;
         }
 
+        Debug.Log($"Ability {abilityType} not found!");
         return null;
     }
 

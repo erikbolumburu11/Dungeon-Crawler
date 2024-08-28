@@ -9,6 +9,8 @@ TagManager:
   - Healthbar
   - Player Spawnpoint
   - Weapon
+  - Level
+  - Character
   layers:
   - Default
   - TransparentFX

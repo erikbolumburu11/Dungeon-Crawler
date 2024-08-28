@@ -28,6 +28,7 @@ public class CharacterAttack : MonoBehaviour
                     weaponAnimator.SetTrigger("Attack");
                 }
             }
+
             // Swing Animation
             if(equippedWeapon.hasSwingAnimation){
                 weaponAnimator.SetTrigger("Attack");

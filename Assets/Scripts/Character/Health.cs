@@ -22,18 +22,36 @@ public class Health : MonoBehaviour
     public void Damage(GameObject hitByObject){
         if(!canBeHit) return;
 
-        WeaponInfo hitByWeaponInfo = hitByObject.GetComponent<WeaponBehaviour>().weaponInfo;
-        if(hitByWeaponInfo == null) return;
+        WeaponBehaviour hitByObjectBehaviour = hitByObject.GetComponent<WeaponBehaviour>();
+
+        if(hitByObjectBehaviour == null) return;
+
+        int damage = 0;
+        float knockbackForce = 0;
+
+        if(hitByObjectBehaviour is MeleeWeaponBehaviour){
+            WeaponInfo weaponInfo = hitByObjectBehaviour.weaponInfo;
+
+            health -= weaponInfo.damage;
+            knockbackForce = weaponInfo.knockbackForce;
+        }
+
+        else if(hitByObjectBehaviour is ProjectileBehaviour){
+            ProjectileInfo projectileInfo = hitByObjectBehaviour.projectileInfo;
+
+            health -= projectileInfo.damage;
+            knockbackForce = projectileInfo.knockbackForce;
+        }
 
         StartHitCooldown();
 
-        health -= hitByWeaponInfo.damage;
-
-        onHitEvent.Invoke();
+        health -= damage;
 
         if(TryGetComponent(out Knockback knockback)){
-            knockback.Invoke(hitByWeaponInfo.knockbackForce, hitByObject);
+            knockback.Invoke(knockbackForce, hitByObject);
         }
+
+        onHitEvent.Invoke();
 
         ValueBarUI healthBar = GetComponentInChildren<ValueBarUI>();
         if(healthBar != null && healthBar.CompareTag("Healthbar")) healthBar.UpdateDisplay(health, maxHealth);

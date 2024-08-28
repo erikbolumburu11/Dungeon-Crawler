@@ -5,4 +5,5 @@ using UnityEngine;
 public abstract class WeaponBehaviour : MonoBehaviour
 {
     public WeaponInfo weaponInfo;
+    public ProjectileInfo projectileInfo;
 }

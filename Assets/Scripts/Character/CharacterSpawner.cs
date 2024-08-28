@@ -5,9 +5,9 @@ using UnityEngine;
 public class CharacterSpawner : MonoBehaviour
 {
     public static void SpawnPlayerCharacter(ClassInfo classInfo){
-        foreach (GameObject player in GameObject.FindGameObjectsWithTag("Player"))
+        foreach (PlayerBrain player in FindObjectsByType<PlayerBrain>(FindObjectsSortMode.None))
         {
-            Destroy(player);
+            Destroy(player.gameObject);
         }
 
         GameObject playerSpawnpoint = GameObject.FindWithTag("Player Spawnpoint");

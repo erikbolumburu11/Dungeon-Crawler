@@ -5,7 +5,21 @@ using UnityEngine;
 public class Knockback : MonoBehaviour
 {
     public void Invoke(float force, GameObject hitByObject){
-        Vector2 hitFrom = hitByObject.GetComponentInParent<CharacterAttack>().transform.position;
+
+        WeaponBehaviour hitByObjectBehaviour = hitByObject.GetComponent<WeaponBehaviour>();
+        if(hitByObjectBehaviour == null) return;
+
+        Vector2 hitFrom;
+
+        if(hitByObjectBehaviour is MeleeWeaponBehaviour){
+            hitFrom = hitByObject.GetComponentInParent<CharacterAttack>().transform.position;
+        }
+
+        else if(hitByObjectBehaviour is ProjectileBehaviour){
+            hitFrom = hitByObject.transform.position;
+        }
+
+        else return;
 
         Vector2 knockbackDir = new Vector2(
             transform.position.x - hitFrom.x,
