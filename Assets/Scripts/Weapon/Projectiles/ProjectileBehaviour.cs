@@ -30,6 +30,10 @@ public class ProjectileBehaviour : WeaponBehaviour
                 }
                 break;
             case "Character":
+                Team projectileTeam = GetComponent<TeamComponent>().team;
+                Team otherTeam = other.GetComponent<TeamComponent>().team;
+                if(projectileTeam == otherTeam) break;
+
                 Destroy(gameObject);
                 break;
         }

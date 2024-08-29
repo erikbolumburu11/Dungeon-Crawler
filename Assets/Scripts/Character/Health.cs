@@ -8,7 +8,6 @@ public class Health : MonoBehaviour
     [SerializeField] int maxHealth;
     [SerializeField] int health;
     bool canBeHit = true;
-    [SerializeField] float hitCooldown;
     [SerializeField] UnityEvent onHitEvent;
 
     void Start(){
@@ -32,20 +31,20 @@ public class Health : MonoBehaviour
         if(hitByObjectBehaviour is MeleeWeaponBehaviour){
             WeaponInfo weaponInfo = hitByObjectBehaviour.weaponInfo;
 
-            health -= weaponInfo.damage;
+            damage = weaponInfo.damage;
             knockbackForce = weaponInfo.knockbackForce;
         }
 
         else if(hitByObjectBehaviour is ProjectileBehaviour){
             ProjectileInfo projectileInfo = hitByObjectBehaviour.projectileInfo;
 
-            health -= projectileInfo.damage;
+            damage = projectileInfo.damage;
             knockbackForce = projectileInfo.knockbackForce;
         }
 
-        StartHitCooldown();
-
         health -= damage;
+
+        StartCoroutine(StartHitCooldown(hitByObjectBehaviour.weaponInfo.hitCooldown));
 
         if(TryGetComponent(out Knockback knockback)){
             knockback.Invoke(knockbackForce, hitByObject);
@@ -57,9 +56,9 @@ public class Health : MonoBehaviour
         if(healthBar != null && healthBar.CompareTag("Healthbar")) healthBar.UpdateDisplay(health, maxHealth);
     }
 
-    IEnumerator StartHitCooldown(){
+    IEnumerator StartHitCooldown(float duration){
         canBeHit = false;
-        yield return new WaitForSeconds(hitCooldown);
+        yield return new WaitForSeconds(duration);
         canBeHit = true;
     }
 

@@ -73,10 +73,16 @@ public class CharacterAttack : MonoBehaviour
 
     public bool IsAttacking(){
         if(TryGetComponent(out CharacterWeapons characterWeapons)){
-            bool isSpriteAnimating = characterWeapons.GetInstantiatedWeapon()
-                .GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsTag("Attack");
+            bool isSpriteAnimating = false;
+            if(characterWeapons.GetEquippedWeaponInfo().hasSpriteAnimation){
+                isSpriteAnimating = characterWeapons.GetInstantiatedWeapon()
+                    .GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsTag("Attack");
+            }
 
-            bool isSwingAnimating = weaponSwingAnimator.GetCurrentAnimatorStateInfo(0).IsTag("Attack");
+            bool isSwingAnimating = false;
+            if(characterWeapons.GetEquippedWeaponInfo().hasSwingAnimation){
+                isSwingAnimating = weaponSwingAnimator.GetCurrentAnimatorStateInfo(0).IsTag("Attack");
+            }
 
             return isSpriteAnimating || isSwingAnimating;
         }

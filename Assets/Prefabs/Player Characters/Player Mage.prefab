@@ -8,6 +8,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2930298608650730150, guid: c9374e69ef32c484fb620525e58257e4, type: 3}
+      propertyPath: equippedAbilites.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 88cb8b886d270a44baeb023032a820ab, type: 2}
     - target: {fileID: 3164572794237338416, guid: c9374e69ef32c484fb620525e58257e4, type: 3}
       propertyPath: equippedWeapon
       value: 

@@ -8,7 +8,7 @@ public class RangedWeaponBehaviour : WeaponBehaviour
         ProjectileInfo projectileInfo = ProjectileFactory.GetProjectileInfo(weaponInfo.projectileKey);
         if(projectileInfo == null) return;
         
-        Vector3 mouseDir = GetDirectionToMouse();
+        Vector3 mouseDir = Utilities.GetDirectionToMouse(transform.position);
 
         GameObject projectile = Instantiate(
             projectileInfo.prefab,
@@ -20,12 +20,4 @@ public class RangedWeaponBehaviour : WeaponBehaviour
             .SetProjectileInfo(projectileInfo, GetComponent<TeamComponent>().team);
     }
 
-    Vector2 GetDirectionToMouse(){
-        Vector3 screenMousePos = Input.mousePosition;
-        Vector3 worldMousePos = Camera.main.ScreenToWorldPoint(screenMousePos);
-
-        Vector2 dir = new Vector3(worldMousePos.x - transform.position.x, worldMousePos.y - transform.position.y);
-
-        return dir;
-    }
 }

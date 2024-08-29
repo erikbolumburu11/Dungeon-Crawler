@@ -13,9 +13,9 @@ public class FollowTargetCamera : MonoBehaviour
     }
 
     void SetTarget(){
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
-        if(player == null) return;
-        target = player.transform;
+        PlayerBrain playerBrain = FindObjectOfType<PlayerBrain>();
+        if(playerBrain == null) return;
+        target = playerBrain.transform;
     }
 
     void FollowTarget(){

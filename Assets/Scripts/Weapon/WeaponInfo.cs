@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Default Weapon Info", menuName = "Weapon Info")]
 public class WeaponInfo : ScriptableObject
 {
     public string weaponName;
     public GameObject prefab;
     public RuntimeAnimatorController animator;
+
+    [Tooltip("How long until the enemy can be hit again after being hit by this weapon")]
+    public float hitCooldown;
 
     public bool isRanged;
 

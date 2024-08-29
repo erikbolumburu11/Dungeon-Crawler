@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Wooden Arrow
   m_EditorClassIdentifier: 
   projectileKey: Wooden Arrow
-  prefab: {fileID: 4506981013888227046, guid: ea0641cbc6343684eb4d87ccfd83b1a9, type: 3}
+  prefab: {fileID: 3291841718896941339, guid: e8879a08d3d2c1b49b5a2f7b8ad394eb, type: 3}
   speed: 15
   damage: 10
   knockbackForce: 5
