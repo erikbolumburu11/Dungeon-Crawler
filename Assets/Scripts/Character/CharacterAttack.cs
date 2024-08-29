@@ -5,11 +5,12 @@ using UnityEngine;
 public class CharacterAttack : MonoBehaviour
 {
     [SerializeField] GameObject weapon;
-    Animator weaponAnimator;
+    Animator weaponSwingAnimator;
     [SerializeField] GameObject weaponLookOrbit;
+    bool attackRequested;
 
     void Start(){
-        weaponAnimator = weapon.GetComponent<Animator>();
+        weaponSwingAnimator = weapon.GetComponent<Animator>();
     }
 
     public void Attack(){
@@ -24,14 +25,14 @@ public class CharacterAttack : MonoBehaviour
             // Sprite Animation
             if(equippedWeapon.hasSpriteAnimation){
                 if(characterWeapons.GetInstantiatedWeapon() != null){
-                    Animator weaponAnimator = characterWeapons.GetInstantiatedWeapon().GetComponent<Animator>();
-                    weaponAnimator.SetTrigger("Attack");
+                    Animator weaponSpriteAnimator = characterWeapons.GetInstantiatedWeapon().GetComponent<Animator>();
+                    weaponSpriteAnimator.SetTrigger("Attack");
                 }
             }
 
             // Swing Animation
             if(equippedWeapon.hasSwingAnimation){
-                weaponAnimator.SetTrigger("Attack");
+                weaponSwingAnimator.SetTrigger("Attack");
             }
 
         }
@@ -71,6 +72,14 @@ public class CharacterAttack : MonoBehaviour
     }
 
     public bool IsAttacking(){
-        return weaponAnimator.GetCurrentAnimatorStateInfo(0).IsTag("Attack");
+        if(TryGetComponent(out CharacterWeapons characterWeapons)){
+            bool isSpriteAnimating = characterWeapons.GetInstantiatedWeapon()
+                .GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsTag("Attack");
+
+            bool isSwingAnimating = weaponSwingAnimator.GetCurrentAnimatorStateInfo(0).IsTag("Attack");
+
+            return isSpriteAnimating || isSwingAnimating;
+        }
+        return false;
     }
 }
