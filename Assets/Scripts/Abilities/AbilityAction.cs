@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class AbilityCastData {
     public GameObject caster;
+    public AbilityInfo abilityInfo;
     public GameObject abilityPrefab;
 }
 

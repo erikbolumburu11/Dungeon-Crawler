@@ -12,7 +12,7 @@ public class ProjectileBehaviour : WeaponBehaviour
 
     void FixedUpdate(){
         // rigidBody.velocity = transform.forward * projectileInfo.speed * Time.deltaTime;
-        transform.Translate(0, 1, 0);
+        transform.Translate(0, projectileInfo.speed * Time.deltaTime, 0);
     }
 
     // Must be called from wherever creates this. Very bad.
@@ -26,6 +26,7 @@ public class ProjectileBehaviour : WeaponBehaviour
         switch(other.tag){
             case "Level":
                 if(projectileInfo.destroyedOnLevelCollision){
+                    InstantiateOnHitEffect();
                     Destroy(gameObject);
                 }
                 break;
@@ -34,9 +35,14 @@ public class ProjectileBehaviour : WeaponBehaviour
                 Team otherTeam = other.GetComponent<TeamComponent>().team;
                 if(projectileTeam == otherTeam) break;
 
+                InstantiateOnHitEffect();
                 Destroy(gameObject);
                 break;
         }
     }
 
+    void InstantiateOnHitEffect(){
+        if(projectileInfo.onHitEffectPrefab == null) return;
+        Instantiate(projectileInfo.onHitEffectPrefab, transform.position, Quaternion.identity);
+    }
 }

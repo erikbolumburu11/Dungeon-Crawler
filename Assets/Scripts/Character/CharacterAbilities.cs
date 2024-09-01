@@ -11,6 +11,7 @@ public class CharacterAbilities : MonoBehaviour
 
         AbilityCastData castData = new AbilityCastData(){
             caster = gameObject,
+            abilityInfo = ability,
             abilityPrefab = ability.prefab
         };
 

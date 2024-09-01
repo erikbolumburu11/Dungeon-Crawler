@@ -9,21 +9,17 @@ public class WeaponInfo : ScriptableObject
     public GameObject prefab;
     public RuntimeAnimatorController animator;
 
+
+    bool IsRanged => false;
+
+    [HideIf("IsRanged")]
     [Tooltip("How long until the enemy can be hit again after being hit by this weapon")]
     public float hitCooldown;
 
-    public bool isRanged;
-
-    [HideIf("isRanged")]
+    [HideIf("IsRanged")]
     public int damage;
-    [HideIf("isRanged")]
+
+    [HideIf("IsRanged")]
     public float knockbackForce;
 
-    [ShowIf("isRanged")]
-    public string projectileKey;
-
-    public float weaponLookDirOffset;
-    public bool attackingLocksWeaponDir;
-    public bool hasSwingAnimation;
-    public bool hasSpriteAnimation;
 }

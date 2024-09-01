@@ -9,22 +9,22 @@ public class Knockback : MonoBehaviour
         WeaponBehaviour hitByObjectBehaviour = hitByObject.GetComponent<WeaponBehaviour>();
         if(hitByObjectBehaviour == null) return;
 
-        Vector2 hitFrom;
+
+        Vector2 knockbackDir;
 
         if(hitByObjectBehaviour is MeleeWeaponBehaviour){
-            hitFrom = hitByObject.GetComponentInParent<CharacterAttack>().transform.position;
+            Vector2 hitFrom = hitByObject.GetComponentInParent<CharacterAttack>().transform.position;
+            knockbackDir = new Vector2(
+                transform.position.x - hitFrom.x,
+                transform.position.y - hitFrom.y
+            ).normalized;
         }
 
         else if(hitByObjectBehaviour is ProjectileBehaviour){
-            hitFrom = hitByObject.transform.position;
+            knockbackDir = hitByObject.transform.up;
         }
 
         else return;
-
-        Vector2 knockbackDir = new Vector2(
-            transform.position.x - hitFrom.x,
-            transform.position.y - hitFrom.y
-        ).normalized;
 
         GetComponent<Rigidbody2D>().AddForce(knockbackDir * force, ForceMode2D.Impulse);
 

@@ -5,7 +5,7 @@ using UnityEngine;
 public class CharacterWeapons : MonoBehaviour
 {
     [SerializeField] Animator weaponAnimator;
-    [SerializeField] WeaponInfo equippedWeapon;
+    [SerializeField] EquippableWeaponInfo equippedWeapon;
     GameObject instantiatedWeapon;
     [SerializeField] Transform weaponHandlePoint;
     [SerializeField] LookAtMouse weaponMouseFollow;
@@ -28,7 +28,7 @@ public class CharacterWeapons : MonoBehaviour
         }
     }
 
-    void EquipWeapon(WeaponInfo weaponInfo){
+    void EquipWeapon(EquippableWeaponInfo weaponInfo){
         equippedWeapon = weaponInfo;
         instantiatedWeapon = Instantiate(equippedWeapon.prefab, weaponHandlePoint);
         weaponAnimator.runtimeAnimatorController = equippedWeapon.animator;
@@ -40,7 +40,7 @@ public class CharacterWeapons : MonoBehaviour
         }
     }
 
-    public WeaponInfo GetEquippedWeaponInfo(){
+    public EquippableWeaponInfo GetEquippedWeaponInfo(){
         return equippedWeapon;
     }
 

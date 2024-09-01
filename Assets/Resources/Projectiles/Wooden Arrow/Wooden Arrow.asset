@@ -12,9 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06ce101e939ae9b41adfbc85bfe8dd1f, type: 3}
   m_Name: Wooden Arrow
   m_EditorClassIdentifier: 
-  projectileKey: Wooden Arrow
+  weaponName: Wooden Arrow
   prefab: {fileID: 3291841718896941339, guid: e8879a08d3d2c1b49b5a2f7b8ad394eb, type: 3}
-  speed: 15
-  damage: 10
+  animator: {fileID: 0}
+  hitCooldown: 0.2
+  damage: 20
   knockbackForce: 5
+  key: Wooden Arrow
+  speed: 40
   destroyedOnLevelCollision: 1

@@ -1326,6 +1326,14 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Character
       objectReference: {fileID: 0}
+    - target: {fileID: 3355835228301824127, guid: 6c78634803b59c9479135970fb4e7c1f, type: 3}
+      propertyPath: health
+      value: 400
+      objectReference: {fileID: 0}
+    - target: {fileID: 3355835228301824127, guid: 6c78634803b59c9479135970fb4e7c1f, type: 3}
+      propertyPath: maxHealth
+      value: 400
+      objectReference: {fileID: 0}
     - target: {fileID: 3545586673071211347, guid: 6c78634803b59c9479135970fb4e7c1f, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0

@@ -20,7 +20,7 @@ public class CharacterAttack : MonoBehaviour
         if(TryGetComponent(out CharacterWeapons characterWeapons)){
             StartCoroutine(LerpWeaponToAttackDirection(0.1f, 1));
 
-            WeaponInfo equippedWeapon = characterWeapons.GetEquippedWeaponInfo();
+            EquippableWeaponInfo equippedWeapon = characterWeapons.GetEquippedWeaponInfo();
 
             // Sprite Animation
             if(equippedWeapon.hasSpriteAnimation){

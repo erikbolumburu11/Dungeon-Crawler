@@ -5,7 +5,16 @@ using UnityEngine;
 public class RangedWeaponBehaviour : WeaponBehaviour
 {
     public void Fire(){
-        ProjectileInfo projectileInfo = ProjectileFactory.GetProjectileInfo(weaponInfo.projectileKey);
+        RangedWeaponInfo rangedWeaponInfo;
+        if(weaponInfo is RangedWeaponInfo info)
+        {
+            rangedWeaponInfo = info;
+        }
+        else{
+            return;
+        }
+
+        ProjectileInfo projectileInfo = ProjectileFactory.GetProjectileInfo(rangedWeaponInfo.projectileKey);
         if(projectileInfo == null) return;
         
         Vector3 mouseDir = Utilities.GetDirectionToMouse(transform.position);

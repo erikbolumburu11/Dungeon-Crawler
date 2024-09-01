@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilityName: Fireball
   abilityActionKey: Fireball
+  projectileCount: 1
   prefab: {fileID: 0}
   image: {fileID: 0}

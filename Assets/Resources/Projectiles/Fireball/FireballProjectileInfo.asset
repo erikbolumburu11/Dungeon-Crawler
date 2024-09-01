@@ -12,9 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06ce101e939ae9b41adfbc85bfe8dd1f, type: 3}
   m_Name: FireballProjectileInfo
   m_EditorClassIdentifier: 
-  projectileKey: FireballProjectile
+  weaponName: Fireball
   prefab: {fileID: 5680174691170326385, guid: 1e160f739858c7e4fac4cebc18117ef0, type: 3}
-  speed: 15
+  animator: {fileID: 0}
+  hitCooldown: 0.1
   damage: 30
   knockbackForce: 10
+  key: FireballProjectile
+  speed: 20
   destroyedOnLevelCollision: 1
+  onHitEffectPrefab: {fileID: 6048459707290869255, guid: e4bef83410b525f4f801a004eb93933f, type: 3}

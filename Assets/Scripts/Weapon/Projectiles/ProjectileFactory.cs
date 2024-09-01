@@ -16,7 +16,7 @@ public static class ProjectileFactory
 
         foreach(Object proj in projectiles){
             ProjectileInfo projectileInfo = (ProjectileInfo)proj;
-            projectilesByName.Add(projectileInfo.projectileKey, projectileInfo);
+            projectilesByName.Add(projectileInfo.key, projectileInfo);
         }
     }
 

@@ -9,17 +9,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5f8f4cc4571d4346b693679499a5750, type: 3}
+  m_Script: {fileID: 11500000, guid: 6b525418cb95be04293100455afce1d3, type: 3}
   m_Name: Wooden Bow
   m_EditorClassIdentifier: 
   weaponName: Wooden Bow
   prefab: {fileID: 6546873738015749041, guid: 78bc47cdba93e9c4d84770c21389044c, type: 3}
   animator: {fileID: 22100000, guid: bcb160c0d2248f045bdeb18afde4573c, type: 2}
-  isRanged: 1
-  damage: 20
-  knockbackForce: 5
-  projectileKey: Wooden Arrow
+  hitCooldown: 0
+  damage: 0
+  knockbackForce: 0
   weaponLookDirOffset: 0
   attackingLocksWeaponDir: 0
   hasSwingAnimation: 0
   hasSpriteAnimation: 1
+  projectileKey: Wooden Arrow

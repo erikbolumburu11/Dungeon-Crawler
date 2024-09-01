@@ -25,14 +25,17 @@ public class Health : MonoBehaviour
 
         if(hitByObjectBehaviour == null) return;
 
+        // Hit Info
         int damage = 0;
         float knockbackForce = 0;
+        float hitCooldownDuration = 0;
 
         if(hitByObjectBehaviour is MeleeWeaponBehaviour){
             WeaponInfo weaponInfo = hitByObjectBehaviour.weaponInfo;
 
             damage = weaponInfo.damage;
             knockbackForce = weaponInfo.knockbackForce;
+            hitCooldownDuration = weaponInfo.hitCooldown;
         }
 
         else if(hitByObjectBehaviour is ProjectileBehaviour){
@@ -40,11 +43,12 @@ public class Health : MonoBehaviour
 
             damage = projectileInfo.damage;
             knockbackForce = projectileInfo.knockbackForce;
+            hitCooldownDuration = projectileInfo.hitCooldown;
         }
 
         health -= damage;
 
-        StartCoroutine(StartHitCooldown(hitByObjectBehaviour.weaponInfo.hitCooldown));
+        StartCoroutine(StartHitCooldown(hitCooldownDuration));
 
         if(TryGetComponent(out Knockback knockback)){
             knockback.Invoke(knockbackForce, hitByObject);
