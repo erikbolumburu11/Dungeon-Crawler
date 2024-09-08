@@ -18,41 +18,12 @@ public class Health : MonoBehaviour
         if(health <= 0) Destroy(gameObject);
     }
 
-    public void Damage(GameObject hitByObject){
+    public void Damage(int amount, float hitCooldownDuration){
         if(!canBeHit) return;
 
-        WeaponBehaviour hitByObjectBehaviour = hitByObject.GetComponent<WeaponBehaviour>();
-
-        if(hitByObjectBehaviour == null) return;
-
-        // Hit Info
-        int damage = 0;
-        float knockbackForce = 0;
-        float hitCooldownDuration = 0;
-
-        if(hitByObjectBehaviour is MeleeWeaponBehaviour){
-            WeaponInfo weaponInfo = hitByObjectBehaviour.weaponInfo;
-
-            damage = weaponInfo.damage;
-            knockbackForce = weaponInfo.knockbackForce;
-            hitCooldownDuration = weaponInfo.hitCooldown;
-        }
-
-        else if(hitByObjectBehaviour is ProjectileBehaviour){
-            ProjectileInfo projectileInfo = hitByObjectBehaviour.projectileInfo;
-
-            damage = projectileInfo.damage;
-            knockbackForce = projectileInfo.knockbackForce;
-            hitCooldownDuration = projectileInfo.hitCooldown;
-        }
-
-        health -= damage;
+        health -= amount;
 
         StartCoroutine(StartHitCooldown(hitCooldownDuration));
-
-        if(TryGetComponent(out Knockback knockback)){
-            knockback.Invoke(knockbackForce, hitByObject);
-        }
 
         onHitEvent.Invoke();
 
@@ -71,8 +42,12 @@ public class Health : MonoBehaviour
             Team myTeam = GetComponent<TeamComponent>().team;
             Team otherTeam = other.GetComponent<TeamComponent>().team;
 
-            if(myTeam != otherTeam || otherTeam == Team.NEUTRAL)
-                Damage(other.gameObject);
+            if(myTeam != otherTeam || otherTeam == Team.NEUTRAL){
+                Damage(weaponBehaviour.weaponInfo.damage, weaponBehaviour.weaponInfo.hitCooldown);
+
+                if(TryGetComponent(out Knockback knockback))
+                    knockback.Invoke(weaponBehaviour.weaponInfo.knockbackForce, other.gameObject);
+            }
         }
 
     }

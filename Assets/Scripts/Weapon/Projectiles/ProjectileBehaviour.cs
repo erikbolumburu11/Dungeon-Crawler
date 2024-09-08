@@ -5,6 +5,7 @@ using UnityEngine;
 public class ProjectileBehaviour : WeaponBehaviour
 {
     Rigidbody2D rigidBody;
+    ProjectileInfo projectileInfo;
 
     void Awake(){
         rigidBody = GetComponent<Rigidbody2D>();
@@ -18,6 +19,7 @@ public class ProjectileBehaviour : WeaponBehaviour
     // Must be called from wherever creates this. Very bad.
     public void SetProjectileInfo(ProjectileInfo projectileInfo, Team team){
         this.projectileInfo = projectileInfo;
+        weaponInfo = projectileInfo;
         GetComponent<TeamComponent>().team = team;
     }
 

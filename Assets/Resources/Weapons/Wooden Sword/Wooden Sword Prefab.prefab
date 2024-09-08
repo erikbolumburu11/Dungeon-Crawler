@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5692684059938191257}
   m_Layer: 0
   m_Name: Wooden Sword Prefab
-  m_TagString: Player Weapon
+  m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

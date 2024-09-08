@@ -10,8 +10,12 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2930298608650730150, guid: c9374e69ef32c484fb620525e58257e4, type: 3}
       propertyPath: equippedAbilites.Array.size
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2930298608650730150, guid: c9374e69ef32c484fb620525e58257e4, type: 3}
+      propertyPath: equippedAbilites.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: f9327473afae0964b966acae6d50b998, type: 2}
     - target: {fileID: 3164572794237338416, guid: c9374e69ef32c484fb620525e58257e4, type: 3}
       propertyPath: equippedWeapon
       value: 

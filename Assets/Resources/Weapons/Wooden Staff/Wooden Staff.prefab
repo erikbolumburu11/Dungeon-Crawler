@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -2019824470909146285}
   m_Layer: 0
   m_Name: Wooden Staff
-  m_TagString: Player Weapon
+  m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

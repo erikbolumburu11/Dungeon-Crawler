@@ -535,8 +535,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 144fb5e7004f4f54ba2dc9063d759ef8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  equippedAbilites:
-  - {fileID: 11400000, guid: 57af118823b4c704ea601a933bb695c4, type: 2}
+  equippedAbilites: []
 --- !u!114 &3164572794237338416
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -582,7 +581,6 @@ MonoBehaviour:
   bodyAnimator: {fileID: 8116621038635631518}
   bodySprite: {fileID: 8342833716192217563}
   moveSpeed: 6
-  knockedBack: 0
 --- !u!114 &-1123132467989715612
 MonoBehaviour:
   m_ObjectHideFlags: 0

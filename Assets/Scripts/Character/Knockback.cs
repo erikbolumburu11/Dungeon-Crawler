@@ -26,16 +26,16 @@ public class Knockback : MonoBehaviour
 
         else return;
 
+        GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         GetComponent<Rigidbody2D>().AddForce(knockbackDir * force, ForceMode2D.Impulse);
 
-        GetComponent<CharacterLocomotion>().knockedBack = true;
-
-        StartCoroutine(EndKnockback(0.1f));
+        float knockbackTime = 0.1f;
+        GetComponent<CharacterLocomotion>().SetStatusEffectOnTimer(StatusEffect.KNOCKED_BACK, knockbackTime);
+        StartCoroutine(ResetVelocityAfterKnockback(knockbackTime));
     }
 
-    IEnumerator EndKnockback(float delay){
-        yield return new WaitForSeconds(delay);
+    IEnumerator ResetVelocityAfterKnockback(float time){
+        yield return new WaitForSeconds(time);
         GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-        GetComponent<CharacterLocomotion>().knockedBack = false;;
     }
 }

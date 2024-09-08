@@ -5,12 +5,12 @@ TagManager:
   serializedVersion: 2
   tags:
   - Enemy
-  - Player Weapon
   - Healthbar
   - Player Spawnpoint
   - Weapon
   - Level
   - Character
+  - Player Weapon
   layers:
   - Default
   - TransparentFX
@@ -47,4 +47,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Particles
+    uniqueID: 3399721135
     locked: 0

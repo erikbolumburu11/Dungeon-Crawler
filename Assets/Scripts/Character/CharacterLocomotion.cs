@@ -2,6 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum StatusEffect {
+    KNOCKED_BACK,
+    CHARGING,
+    STUNNED
+}
+
 public class CharacterLocomotion : MonoBehaviour
 {
     [Header("References")]
@@ -9,17 +15,16 @@ public class CharacterLocomotion : MonoBehaviour
     [SerializeField] SpriteRenderer bodySprite;
     Rigidbody2D rigidBody;
 
-    
     [Header("Character Data")]
     public float moveSpeed;
-    const float moveSpeedMultiplier = 100; // Set move speed to 10 instead of 1000, just looks nicer.
 
-    public bool knockedBack;
+    public Dictionary<StatusEffect, bool> statusEffects;
 
     Vector2 moveDir;
 
     void Awake(){
         rigidBody = GetComponent<Rigidbody2D>();
+        statusEffects = new();
     }
 
     void Update()
@@ -30,7 +35,7 @@ public class CharacterLocomotion : MonoBehaviour
     }
 
     void FixedUpdate() {
-        if(knockedBack) return;
+        if(!CanMove()) return;
 
         rigidBody.velocity = moveDir * moveSpeed;
     }
@@ -44,5 +49,37 @@ public class CharacterLocomotion : MonoBehaviour
 
     public void SetMoveDirection(Vector2 moveDir){
         this.moveDir = moveDir;
+    }
+
+    public void SetStatusEffect(StatusEffect statusEffect, bool isActive){
+        if(statusEffects.ContainsKey(statusEffect)) 
+            statusEffects[statusEffect] = isActive;
+
+        else statusEffects.Add(statusEffect, isActive);
+    }
+
+    public bool GetStatusEffect(StatusEffect statusEffect){
+        if(statusEffects.ContainsKey(statusEffect)) 
+            return statusEffects[statusEffect];
+
+        else return false;
+    }
+
+    public void SetStatusEffectOnTimer(StatusEffect effect, float time){
+        StartCoroutine(SetStatusEffectOnTimerCoroutine(effect, time));
+    }
+
+    IEnumerator SetStatusEffectOnTimerCoroutine(StatusEffect effect, float time){
+        SetStatusEffect(effect, true);
+        yield return new WaitForSeconds(time);
+        SetStatusEffect(effect, false);
+    }
+
+    bool CanMove(){
+        return !(
+            GetStatusEffect(StatusEffect.KNOCKED_BACK) || 
+            GetStatusEffect(StatusEffect.CHARGING) ||
+            GetStatusEffect(StatusEffect.STUNNED)
+        );
     }
 }
