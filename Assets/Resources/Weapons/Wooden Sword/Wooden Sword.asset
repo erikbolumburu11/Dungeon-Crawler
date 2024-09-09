@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponName: Wooden Sword
   prefab: {fileID: 6030778754073060648, guid: e6e33700bc6860b4aba8c46a8278a1e4, type: 3}
-  animator: {fileID: 22100000, guid: c6ce47b2564f39447a9b03e84790ce7f, type: 2}
+  animator: {fileID: 22100000, guid: 1d2ad4f2553f5444a8d70aa3ff3a6f6a, type: 2}
   hitCooldown: 1
   damage: 20
   knockbackForce: 10
   weaponLookDirOffset: 70
   attackingLocksWeaponDir: 1
   hasSwingAnimation: 1
-  hasSpriteAnimation: 0
+  hasSpriteAnimation: 1

@@ -6,7 +6,7 @@ AnimatorOverrideController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: WoodenStaffAnimator
+  m_Name: SwingAnimator
   m_Controller: {fileID: 9100000, guid: d02e047d8dca98441a9495e045cf92f2, type: 2}
   m_Clips:
   - m_OriginalClip: {fileID: 7400000, guid: e9fcfad1078eefa418f51dfc97330588, type: 2}

@@ -19,4 +19,12 @@ public class MeleeWeaponBehaviour : WeaponBehaviour
     public GameObject GetOwner(){
         return GetComponentInParent<CharacterAttack>().gameObject;
     }
+
+    void PlayParticles(){
+        GetComponentInChildren<ParticleSystem>().Play();
+    }
+
+    void StopParticles(){
+        GetComponentInChildren<ParticleSystem>().Stop();
+    }
 }

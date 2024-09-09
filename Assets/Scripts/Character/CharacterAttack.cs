@@ -34,7 +34,6 @@ public class CharacterAttack : MonoBehaviour
             if(equippedWeapon.hasSwingAnimation){
                 weaponSwingAnimator.SetTrigger("Attack");
             }
-
         }
         // Use Body To Attack
         else{
