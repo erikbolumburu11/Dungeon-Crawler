@@ -1,5 +1,7 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Collections;
 using UnityEngine;
 
 public class Utilities
@@ -18,5 +20,21 @@ public class Utilities
             return col.bounds.center;
         }
         return obj.transform.position;
+    }
+}
+
+public static class ListExtensions {
+    static System.Random rng;
+
+    public static IList<T> Shuffle<T>(this IList<T> list) {
+        if (rng == null) rng = new System.Random();
+        int count = list.Count;
+        while (count > 1) {
+            --count;
+            int index = rng.Next(count + 1);
+            (list[index], list[count]) = (list[count], list[index]);
+        }
+
+        return list;
     }
 }

@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &5228286922296889283
+--- !u!1001 &5371629270006576319
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -10,15 +10,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 674737629572272871, guid: 6c78634803b59c9479135970fb4e7c1f, type: 3}
       propertyPath: m_Name
-      value: Skeleton
+      value: Base Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 6444346010327309317, guid: 6c78634803b59c9479135970fb4e7c1f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 8.760159
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6444346010327309317, guid: 6c78634803b59c9479135970fb4e7c1f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.3130004
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6444346010327309317, guid: 6c78634803b59c9479135970fb4e7c1f, type: 3}
       propertyPath: m_LocalPosition.z
