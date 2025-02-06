@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -84,13 +82,35 @@ public class ChaseStrategy : IStrategy {
 
 public class PatrolStrategy : IStrategy {
     Agent agent;
+    bool wantsNewDestination = true;
+
     public PatrolStrategy(Agent agent){
         this.agent = agent;
     }
+
     public Node.Status Process() {
-        if(Input.GetMouseButton(1)){
-            agent.SetDestination(PathfindingGrid.GetTileAtWorldPosition(Camera.main.ScreenToWorldPoint(Input.mousePosition)));
+        if(!wantsNewDestination) return Node.Status.Running;
+
+        int agentXPos = Mathf.FloorToInt(agent.transform.position.x);
+        int agentYPos = Mathf.FloorToInt(agent.transform.position.y);
+
+        agent.currentPath = null;
+        while(agent.currentPath == null){
+            int randomX = UnityEngine.Random.Range(-5, 5);
+            int randomY = UnityEngine.Random.Range(-5, 5);
+
+            GridTile destination = PathfindingGrid.instance.tiles[agentXPos + randomX, agentYPos + randomY];
+
+            agent.SetDestination(destination);
+            wantsNewDestination = false;
         }
+
+        ActionOnTimer.GetTimer(agent.gameObject, "New Patrol Destination").SetTimer
+        (
+            3.0f,
+            () => { wantsNewDestination = true; }
+        );
+
         return Node.Status.Running;
     }
 }

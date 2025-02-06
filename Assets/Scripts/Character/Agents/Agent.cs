@@ -8,7 +8,7 @@ public class Agent : MonoBehaviour
     protected BehaviourTree tree;
     CharacterLocomotion locomotion;
 
-    protected Stack<GridTile> currentPath;
+    public Stack<GridTile> currentPath;
     protected GridTile destinationTile;
 
     [Header("Debug")]
@@ -30,7 +30,6 @@ public class Agent : MonoBehaviour
     public void SetDestination(GridTile destination){
         destinationTile = destination;
         currentPath = GetComponent<Pathfinder>().FindPath(PathfindingGrid.GetTileAtWorldPosition(transform.position), destinationTile);
-        Debug.Log($"Destination Set To: {destination.worldPosition}");
     }
 
     void MoveToDestination(){
