@@ -1,0 +1,53 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7f90916910a27049ab3484866bc63e1, type: 3}
+  m_Name: Melee Skeleton Info
+  m_EditorClassIdentifier: 
+  detectionRange: 7.87
+  visibilityCooldown: 1
+  preferredDistanceFromEnemy:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0.012107849
+      value: 1.0000038
+      inSlope: -0.0043766233
+      outSlope: -0.0043766233
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1.3163321
+      value: 0.9942957
+      inSlope: -0.0011145414
+      outSlope: -0.0011145414
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.17985013
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 10
+      value: 0
+      inSlope: -0.11450181
+      outSlope: -0.11450181
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  enemyDistanceMagnitude: 5.8
+  maxDistanceFromSamplePoint: 6.5
+  agentDistanceMagnitude: 0.29
+  visibilityMagnitude: 1

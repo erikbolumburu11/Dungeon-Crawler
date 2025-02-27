@@ -10,6 +10,15 @@ public class PlayerBrain : MonoBehaviour
     [SerializeField] InputActionReference attackInput;
     [SerializeField] InputActionReference castAbilityInput;
 
+    void Start()
+    {
+        TeamComponent.AddToTeamObjectList(gameObject);
+    }
+
+    void OnDestroy(){
+        TeamComponent.RemoveFromTeamObjectList(gameObject);
+    }
+
     void OnEnable(){
         castAbilityInput.action.started += CastAbility;
     }

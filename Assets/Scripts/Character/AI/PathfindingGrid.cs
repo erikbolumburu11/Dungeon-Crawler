@@ -20,7 +20,7 @@ public class GridTile {
     public GridTile(Vector2Int gridPosition, float tileSize){
         this.gridPosition = gridPosition;
         worldPosition = new Vector3((gridPosition.x * tileSize) + tileSize / 2, (gridPosition.y * tileSize) + tileSize / 2, 0);
-        walkable = !Physics2D.OverlapCircle(worldPosition, (tileSize / 8), ~(1 << levelMask));
+        walkable = !Physics2D.OverlapCircle(worldPosition, tileSize / 8, ~(1 << levelMask));
     }
 
     public static int Distance(GridTile a, GridTile b){
@@ -97,6 +97,8 @@ public class PathfindingGrid : MonoBehaviour
     public static GridTile GetTileAtWorldPosition(Vector2 pos){
         float x = Mathf.Floor(pos.x);
         float y = Mathf.Floor(pos.y);
+        if(x < 0 || x >= instance.gridSize.x) return null;
+        if(y < 0 || y >= instance.gridSize.y) return null;
         return instance.tiles[(int)x, (int)y];
     }
 

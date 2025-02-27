@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using Sirenix.Utilities;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -32,51 +34,53 @@ public class Condition : IStrategy {
     }
 }
 
-public class AttackTargetStrategy : IStrategy {
-    GameObject entity;
-    GameObject target;
-    bool finished;
-    public AttackTargetStrategy(GameObject entity, GameObject target){
-        this.entity = entity;
-        this.target = target;
-    }
-
-    public Node.Status Process(){
-        return Node.Status.Running;
-    }
-}
-
-public class MoveToPreferredCombatDistanceStrategy : IStrategy {
-    NavMeshAgent agent;
-    GameObject target;
-    float moveSpeed;
-    float preferredCombatDistance;
-    bool isPathCalculated;
-
-    public MoveToPreferredCombatDistanceStrategy(NavMeshAgent agent, GameObject target, float preferredCombatDistance, float moveSpeed){
+public class MoveToAttackStrategy : IStrategy {
+    Agent agent;
+    public MoveToAttackStrategy(Agent agent){
         this.agent = agent;
-        this.target = target;
-        this.moveSpeed = moveSpeed;
-        this.preferredCombatDistance = preferredCombatDistance;
-    }
-    
-    public Node.Status Process() {
-        return Node.Status.Running;
-    }
-}
-
-public class ChaseStrategy : IStrategy {
-    NavMeshAgent agent;
-    GameObject target;
-    float chaseSpeed;
-    public ChaseStrategy(NavMeshAgent agent, GameObject target, float chaseSpeed){
-        this.agent = agent;
-        this.target = target;
-        this.chaseSpeed = chaseSpeed;
     }
 
     public Node.Status Process() {
-        return Node.Status.Success;
+        GameObject target = agent.target;
+        if(target == null || target.activeSelf == false) return Node.Status.Failure;
+
+        List<SamplePoint> samplePoints = RingGenerator.GenerateSamplePoints(
+            agent.target.transform.position,
+            agent.spatialQueryField.ringCount,
+            agent.spatialQueryField.pointsPerRing,
+            agent.spatialQueryField.distanceBetweenRings
+        );
+
+        samplePoints = RingGenerator.DiscardUnwalkablePoints(samplePoints);
+        samplePoints = agent.spatialQueryField.EvaluateField(samplePoints, new List<Evaluator>{
+            new EnemyDistanceEvaluator(agent.agentInfo.enemyDistanceMagnitude),
+            new AgentDistanceEvaluator(agent.agentInfo.agentDistanceMagnitude),
+            new VisibiltyEvaluator(agent.agentInfo.visibilityMagnitude)
+        });
+
+        agent.SetDestination(
+            PathfindingGrid.GetTileAtWorldPosition(
+                agent.spatialQueryField.GetBestSamplePoint(samplePoints).pos
+            )
+        );
+        if(Vector2.Distance(agent.transform.position, target.transform.position) > 1) return Node.Status.Running;
+        else return Node.Status.Success;
+    }
+}
+
+public class MoveToEnemyLastSeenPos : IStrategy {
+    Agent agent;
+    public MoveToEnemyLastSeenPos(Agent agent){
+        this.agent = agent;
+    }
+
+    public Node.Status Process() {
+        if(!agent.IsInCombat()) return Node.Status.Failure;
+        if(!agent.GetVisibleEnemies().IsNullOrEmpty()) return Node.Status.Success;
+
+        agent.SetDestination(PathfindingGrid.GetTileAtWorldPosition(agent.posEnemyLastVisible));
+        if(Vector2.Distance(agent.transform.position, agent.posEnemyLastVisible) > 1) return Node.Status.Running;
+        else return Node.Status.Success;
     }
 }
 

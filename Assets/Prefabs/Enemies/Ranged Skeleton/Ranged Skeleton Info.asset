@@ -1,0 +1,71 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7f90916910a27049ab3484866bc63e1, type: 3}
+  m_Name: Ranged Skeleton Info
+  m_EditorClassIdentifier: 
+  detectionRange: 16.18
+  visibilityCooldown: 5
+  preferredDistanceFromEnemy:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: -0.036258698
+      value: -0.01651001
+      inSlope: 0.049843542
+      outSlope: 0.049843542
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 4.7572536
+      value: 0.22241563
+      inSlope: 0.1258911
+      outSlope: 0.1258911
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 7.918063
+      value: 0.9957061
+      inSlope: -0.027848003
+      outSlope: -0.027848003
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.17985013
+      outWeight: 0.13299061
+    - serializedVersion: 3
+      time: 14.648408
+      value: 0.39001825
+      inSlope: -0.031735573
+      outSlope: -0.031735573
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.27500057
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 19.19342
+      value: -0.014465332
+      inSlope: -0.10218888
+      outSlope: -0.10218888
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.14037688
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  enemyDistanceMagnitude: 5.8
+  maxDistanceFromSamplePoint: 6.5
+  agentDistanceMagnitude: 1.05
+  visibilityMagnitude: 1.86

@@ -1,23 +1,49 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Sirenix.Utilities;
 using UnityEngine;
 
 public class Agent : MonoBehaviour
 {
     protected BehaviourTree tree;
     CharacterLocomotion locomotion;
+    TeamComponent teamComponent;
+    public AgentInfo agentInfo;
+    public SpatialQueryField spatialQueryField;
+
+    [SerializeField] Collider2D movementCollider;
 
     public Stack<GridTile> currentPath;
     protected GridTile destinationTile;
+
+    public GameObject target;
+
+    float timeEnemyLastVisible;
+    public Vector3 posEnemyLastVisible;
+    Dictionary<GameObject, float> enemyLastSeenTimeMap;
 
     [Header("Debug")]
     [SerializeField] string currentStateName;
     [SerializeField] bool drawPath;
     [SerializeField] bool drawAgentInfo;
+    [SerializeField] bool drawDetectRange;
 
     public void Awake() {
         locomotion = GetComponent<CharacterLocomotion>();
+        teamComponent = GetComponent<TeamComponent>();
+        spatialQueryField = GetComponent<SpatialQueryField>();
+
+        enemyLastSeenTimeMap = new();
+    }
+
+    void Start()
+    {
+        TeamComponent.AddToTeamObjectList(gameObject);
+    }
+
+    public void OnDestroy(){
+        TeamComponent.RemoveFromTeamObjectList(gameObject);
     }
 
     void Update() {
@@ -25,11 +51,20 @@ public class Agent : MonoBehaviour
         currentStateName = tree.GetRunningNode().name;
 
         if(locomotion != null) MoveToDestination();        
+
+        target = TargetSelection.SelectTarget(this);
+        if(target != null) posEnemyLastVisible = target.transform.position;
+
+        if(!GetVisibleEnemies().IsNullOrEmpty()) timeEnemyLastVisible = Time.time;
     }
 
     public void SetDestination(GridTile destination){
         destinationTile = destination;
-        currentPath = GetComponent<Pathfinder>().FindPath(PathfindingGrid.GetTileAtWorldPosition(transform.position), destinationTile);
+        currentPath = GetComponent<Pathfinder>().FindPath(
+            PathfindingGrid.GetTileAtWorldPosition(transform.position),
+            destinationTile,
+            movementCollider
+        );
     }
 
     void MoveToDestination(){
@@ -39,40 +74,58 @@ public class Agent : MonoBehaviour
         } 
 
         GridTile nextTileInPath = currentPath.Peek();
-        if(Vector3.Distance(transform.position, nextTileInPath.worldPosition) < 0.3f){
+        if(Vector3.Distance(transform.position, nextTileInPath.worldPosition) < 0.05f){
             currentPath.Pop();
         }
         Vector2 moveDir = (nextTileInPath.worldPosition - transform.position).normalized;
         locomotion.SetMoveDirection(moveDir);
     }
 
-    public bool IsPlayerVisible() {
-/*         if(Vector3.Distance(GameManager.Instance.player.transform.position, transform.position) < detectRange){
-            return true;
+    public List<GameObject> GetVisibleEnemies(){
+        List<GameObject> enemyObjects = TeamComponent.GetOppositeTeamObjectList(teamComponent.team);
+
+        enemyObjects = enemyObjects.Where(
+            x => Vector2.Distance(transform.position, x.transform.position) <= agentInfo.detectionRange
+        ).ToList();
+
+        List<GameObject> visibleEnemies = new();
+        foreach (GameObject enemy in enemyObjects)
+        {
+            Vector2 dir = (enemy.transform.position - transform.position).normalized;
+            if(!Physics2D.Raycast(transform.position, dir, Vector2.Distance(transform.position, enemy.transform.position), LayerMask.GetMask("Level"))){
+                if(enemyLastSeenTimeMap.ContainsKey(enemy))
+                    enemyLastSeenTimeMap[enemy] = Time.time;
+                else
+                    enemyLastSeenTimeMap.Add(enemy, Time.time);
+            }
         }
-        return false; */
-        throw new NotImplementedException();
-    }
-    
-    protected bool IsPlayerInCombatRange(){
-/*         if(Vector3.Distance(GameManager.Instance.player.transform.position, transform.position) - 0.1f <= preferredCombatDistance){
-            return true;
+        List<GameObject> enemiesToRemove = new();
+        foreach(KeyValuePair<GameObject, float> enemy in enemyLastSeenTimeMap){
+            if(enemy.Key == null) enemiesToRemove.Add(enemy.Key);
+            if(Time.time - enemy.Value < agentInfo.visibilityCooldown){
+                visibleEnemies.Add(enemy.Key);
+            }
         }
-        return false; */
-        throw new NotImplementedException();
+        foreach (GameObject enemy in enemiesToRemove)
+        {
+            enemyLastSeenTimeMap.Remove(enemy);
+            visibleEnemies.Remove(enemy);
+        }
+        visibleEnemies = visibleEnemies.OrderBy(
+            x => Vector2.Distance(transform.position, x.transform.position)
+        ).ToList();
+        return visibleEnemies;
     }
 
-    protected bool CanAttack(){
-/*         if(GetComponent<CombatController>().isAttacking){
-            return false;
-        } 
-        return true; */
-        throw new NotImplementedException();
+    public bool IsInCombat(){
+        if(!GetVisibleEnemies().IsNullOrEmpty() || (Time.time > 5 && Time.time - timeEnemyLastVisible < 5))
+            return true;
+        return false;
     }
 
     #if UNITY_EDITOR
     void OnDrawGizmos(){
-        // Draw Path
+        #region DRAW_PATH
         if(drawPath && currentPath != null) {
             Gizmos.color = Color.blue;
 
@@ -84,14 +137,31 @@ public class Agent : MonoBehaviour
                 Gizmos.DrawLine(pathPositions[i], pathPositions[i+1]);
             }
         }
+        #endregion DRAW_PATH
 
-        // Draw Agent Info
+        #region TARGET_LINE
+        if(target != null){
+            Gizmos.color = Color.red;
+            Gizmos.DrawLine(transform.position, target.transform.position);
+        }
+        #endregion TARGET_LINE
+
+        #region DRAW_DETECT_RANGE
+        if(drawDetectRange){
+            UnityEditor.Handles.color = Color.green;
+            UnityEditor.Handles.DrawWireDisc(transform.position, Vector3.back, agentInfo.detectionRange);
+        }
+        #endregion DRAW_DETECT_RANGE
+
+        #region AGENT_INFO
         if(tree != null){
+            UnityEditor.Handles.color = Color.white;
             Node runningNode = tree.GetRunningNode();
             if(drawAgentInfo && runningNode != null){
                 UnityEditor.Handles.Label(transform.position, runningNode.name);
             }
         }
+        #endregion AGENT_INFO
     }
     #endif
 }

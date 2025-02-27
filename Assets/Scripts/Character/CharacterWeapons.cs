@@ -10,6 +10,7 @@ public class CharacterWeapons : MonoBehaviour
     [SerializeField] Transform weaponHandlePoint;
     [SerializeField] LookAtMouse weaponMouseFollow;
 
+
     void Awake(){
         if(equippedWeapon == null) return;
         EquipWeapon(equippedWeapon);
@@ -32,7 +33,10 @@ public class CharacterWeapons : MonoBehaviour
         equippedWeapon = weaponInfo;
         instantiatedWeapon = Instantiate(equippedWeapon.prefab, weaponHandlePoint);
         weaponAnimator.runtimeAnimatorController = equippedWeapon.animator;
-        weaponMouseFollow.rotationOffset = equippedWeapon.weaponLookDirOffset;
+
+        if(weaponMouseFollow != null)
+            weaponMouseFollow.rotationOffset = equippedWeapon.weaponLookDirOffset;
+
         instantiatedWeapon.AddComponent<TeamComponent>().team = GetComponent<TeamComponent>().team;
 
         foreach(WeaponBehaviour weaponBehaviour in instantiatedWeapon.GetComponentsInChildren<WeaponBehaviour>()){

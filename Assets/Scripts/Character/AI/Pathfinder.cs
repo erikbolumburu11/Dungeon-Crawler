@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,7 +7,7 @@ public class Pathfinder : MonoBehaviour
 {
      PathfindingGrid pathfindingGrid => PathfindingGrid.instance;
 
-    public Stack<GridTile> FindPath(GridTile startTile, GridTile targetTile){
+    public Stack<GridTile> FindPath(GridTile startTile, GridTile targetTile, Collider2D collider){
         if(!targetTile.walkable) return null;
 
         List<GridTile> openSet = new List<GridTile>();
@@ -30,7 +31,8 @@ public class Pathfinder : MonoBehaviour
             }
 
             foreach(GridTile adjacency in PathfindingGrid.GetAdjacentTiles(currentTile.gridPosition)){
-                if(!adjacency.walkable || closedSet.Contains(adjacency)) continue;
+                if(!adjacency.walkable) continue; 
+                if(closedSet.Contains(adjacency)) continue;
 
                 int newMovementCostToAdjacency = currentTile.gCost + GridTile.Distance(currentTile, adjacency);
                 if(newMovementCostToAdjacency < adjacency.gCost || !openSet.Contains(adjacency)){
