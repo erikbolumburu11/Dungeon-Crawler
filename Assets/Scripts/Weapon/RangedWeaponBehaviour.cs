@@ -17,12 +17,10 @@ public class RangedWeaponBehaviour : WeaponBehaviour
         ProjectileInfo projectileInfo = ProjectileFactory.GetProjectileInfo(rangedWeaponInfo.projectileKey);
         if(projectileInfo == null) return;
         
-        Vector3 mouseDir = Utilities.GetDirectionToMouse(transform.position);
-
         GameObject projectile = Instantiate(
             projectileInfo.prefab,
             transform.position,
-            Quaternion.LookRotation(Vector3.forward, mouseDir)
+            Quaternion.LookRotation(Vector3.forward, transform.up)
         );
 
         projectile.GetComponent<ProjectileBehaviour>()

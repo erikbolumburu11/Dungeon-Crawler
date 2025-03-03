@@ -15,8 +15,7 @@ public class TeamComponent : MonoBehaviour
 
     public Team team;
 
-    void Awake()
-    {
+    public static void InitializeLists(){
         if(!teamObjectListsInitialized){
             friendlyObjects = new();
             enemyObjects = new();
@@ -25,6 +24,7 @@ public class TeamComponent : MonoBehaviour
     }
 
     public static void AddToTeamObjectList(GameObject obj){
+        InitializeLists();
         if(obj.TryGetComponent(out TeamComponent teamComponent)){
             switch (teamComponent.team)
             {
@@ -41,6 +41,7 @@ public class TeamComponent : MonoBehaviour
     }
 
     public static void RemoveFromTeamObjectList(GameObject obj){
+        InitializeLists();
         if(obj.TryGetComponent(out TeamComponent teamComponent)){
             switch (teamComponent.team)
             {
@@ -57,6 +58,7 @@ public class TeamComponent : MonoBehaviour
     }
 
     public static List<GameObject> GetOppositeTeamObjectList(Team team){
+        InitializeLists();
         switch (team)
         {
             case Team.FRIENDLY:

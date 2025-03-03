@@ -52,11 +52,7 @@ public class MoveToAttackStrategy : IStrategy {
         );
 
         samplePoints = RingGenerator.DiscardUnwalkablePoints(samplePoints);
-        samplePoints = agent.spatialQueryField.EvaluateField(samplePoints, new List<Evaluator>{
-            new EnemyDistanceEvaluator(agent.agentInfo.enemyDistanceMagnitude),
-            new AgentDistanceEvaluator(agent.agentInfo.agentDistanceMagnitude),
-            new VisibiltyEvaluator(agent.agentInfo.visibilityMagnitude)
-        });
+        samplePoints = agent.spatialQueryField.EvaluateField(samplePoints);
 
         agent.SetDestination(
             PathfindingGrid.GetTileAtWorldPosition(

@@ -21,6 +21,8 @@ public class CharacterWeapons : MonoBehaviour
     }
 
     public void SetWeaponMouseFollow(){
+        if(weaponMouseFollow == null) return;
+
         if(TryGetComponent(out CharacterAttack characterAttack)){
             if(characterAttack.IsAttacking() && equippedWeapon.attackingLocksWeaponDir)
                 weaponMouseFollow.enabled = false;

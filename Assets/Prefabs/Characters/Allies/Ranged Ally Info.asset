@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f7f90916910a27049ab3484866bc63e1, type: 3}
-  m_Name: Ranged Skeleton Info
+  m_Name: Ranged Ally Info
   m_EditorClassIdentifier: 
   detectionRange: 16.18
   visibilityCooldown: 5
@@ -67,5 +67,5 @@ MonoBehaviour:
     m_RotationOrder: 4
   enemyDistanceMagnitude: 5.8
   maxDistanceFromSamplePoint: 6.5
-  agentDistanceMagnitude: 1.05
-  visibilityMagnitude: 1.86
+  agentDistanceMagnitude: 0.98
+  visibilityMagnitude: 2.85

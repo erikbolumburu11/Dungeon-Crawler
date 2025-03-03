@@ -1,5 +1,8 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
+using Sirenix.OdinInspector;
 using Sirenix.Utilities;
 using UnityEngine;
 
@@ -9,11 +12,32 @@ public class SpatialQueryField : MonoBehaviour
 
     [SerializeField] Gradient pointScoreColorGradient;
 
-    List<SamplePoint> samplePoints;
 
+    [Header("Ring Generator Settings")]
     public int ringCount;
     public int pointsPerRing;
     public float distanceBetweenRings;
+
+    [Header("Evaluator Settings")]
+    public List<EvaluatorSetting> activeEvaluators;
+
+    List<object> evaluators;
+
+    [Button(ButtonSizes.Medium)]
+    public void UpdateEvaluators(){
+        evaluators = new();
+        foreach (EvaluatorSetting evaluatorSetting in activeEvaluators)
+        {
+            Type type = Type.GetType(evaluatorSetting.className);
+
+            if(type == null){
+                Debug.LogError($"Evaluator: {evaluatorSetting.className} does not exist!");
+                continue;
+            }
+
+            evaluators.Add(Activator.CreateInstance(type, evaluatorSetting.weight));
+        }
+    }
 
     [Header("Debug")]
     [SerializeField] bool drawSpatialField;
@@ -21,20 +45,33 @@ public class SpatialQueryField : MonoBehaviour
     void Awake()
     {
         agent = GetComponent<Agent>();
+        UpdateEvaluators();
     }
 
-    public List<SamplePoint> EvaluateField(List<SamplePoint> samplePoints, List<Evaluator> evaluators){
+    public List<SamplePoint> EvaluateField(List<SamplePoint> samplePoints){
         foreach (SamplePoint samplePoint in samplePoints)
         {
             float score = 0;
-            foreach (Evaluator evaluator in evaluators)
+            foreach (object evaluator in evaluators)
             {
-                score += evaluator.EvaluatePoint(samplePoint, agent) / evaluators.Count;
-                score *= evaluator.weight;
+                object[] parametersArray = new object[] {samplePoint, agent};
+                score += (float)evaluator.GetType().GetMethod("EvaluatePoint").Invoke(evaluator, parametersArray) / evaluators.Count;
+                Evaluator e = (Evaluator)evaluator;
+                score *= e.weight;
             }
             samplePoint.score = score;
         }
 
+        return NormalizeField(samplePoints);
+    }
+
+    public List<SamplePoint> NormalizeField(List<SamplePoint> samplePoints){
+        if(samplePoints.IsNullOrEmpty()) return null;
+        float bestScore = samplePoints.OrderBy(x => x.score).Reverse().ToList()[0].score;
+        foreach (SamplePoint samplePoint in samplePoints)
+        {
+            samplePoint.score /= bestScore;
+        }
         return samplePoints;
     }
 
@@ -57,11 +94,7 @@ public class SpatialQueryField : MonoBehaviour
             );
 
             samplePoints = RingGenerator.DiscardUnwalkablePoints(samplePoints);
-            samplePoints = EvaluateField(samplePoints, new List<Evaluator>{
-                new EnemyDistanceEvaluator(agent.agentInfo.enemyDistanceMagnitude),
-                new AgentDistanceEvaluator(agent.agentInfo.agentDistanceMagnitude),
-                new VisibiltyEvaluator(agent.agentInfo.visibilityMagnitude)
-            });
+            samplePoints = EvaluateField(samplePoints);
             foreach (SamplePoint point in samplePoints)
             {
                 Gizmos.color = pointScoreColorGradient.Evaluate(point.score);

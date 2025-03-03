@@ -10,12 +10,7 @@ public class AgentInfo : ScriptableObject
 
     [Header("Enemy Distance Evaluator")]
     public AnimationCurve preferredDistanceFromEnemy;
-    public float enemyDistanceMagnitude;
 
     [Header("Agent Distance Evaluator")]
     public float maxDistanceFromSamplePoint;
-    public float agentDistanceMagnitude;
-
-    [Header("Visibility Evaluator")]
-    public float visibilityMagnitude;
 }

@@ -1,4 +1,17 @@
+using System;
+using Sirenix.OdinInspector;
 using UnityEngine;
+
+[Serializable]
+public struct EvaluatorSetting {
+    [ShowInInspector] public string className;
+    [ShowInInspector] public float weight;
+
+    public EvaluatorSetting(string className, float weight){
+        this.className = className;
+        this.weight = weight;
+    }
+}
 
 public abstract class Evaluator
 {
@@ -39,9 +52,9 @@ public class AgentDistanceEvaluator : Evaluator
     }
 }
 
-public class VisibiltyEvaluator : Evaluator
+public class VisibilityEvaluator : Evaluator
 {
-    public VisibiltyEvaluator(float weight) : base(weight)
+    public VisibilityEvaluator(float weight) : base(weight)
     {
     }
 

@@ -11,6 +11,7 @@ public class Agent : MonoBehaviour
     TeamComponent teamComponent;
     public AgentInfo agentInfo;
     public SpatialQueryField spatialQueryField;
+    LookAtPos lookAtPos;
 
     [SerializeField] Collider2D movementCollider;
 
@@ -33,13 +34,15 @@ public class Agent : MonoBehaviour
         locomotion = GetComponent<CharacterLocomotion>();
         teamComponent = GetComponent<TeamComponent>();
         spatialQueryField = GetComponent<SpatialQueryField>();
+        lookAtPos = GetComponentInChildren<LookAtPos>();
 
         enemyLastSeenTimeMap = new();
+
+        TeamComponent.AddToTeamObjectList(gameObject);
     }
 
     void Start()
     {
-        TeamComponent.AddToTeamObjectList(gameObject);
     }
 
     public void OnDestroy(){
@@ -56,6 +59,20 @@ public class Agent : MonoBehaviour
         if(target != null) posEnemyLastVisible = target.transform.position;
 
         if(!GetVisibleEnemies().IsNullOrEmpty()) timeEnemyLastVisible = Time.time;
+
+        AimWeapon();
+    }
+
+    void AimWeapon(){
+        if(lookAtPos == null) return;
+        if(target != null){
+            lookAtPos.SetTargetPos(target.transform.position);
+        }
+        else{
+            if(currentPath != null && currentPath.Count > 0){
+                lookAtPos.SetTargetPos(currentPath.Peek().worldPosition);
+            }
+        }
     }
 
     public void SetDestination(GridTile destination){
