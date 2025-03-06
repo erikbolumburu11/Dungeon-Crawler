@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using Sirenix.OdinInspector;
+using Sirenix.Utilities;
 using UnityEngine;
 
 [Serializable]
@@ -65,5 +67,31 @@ public class VisibilityEvaluator : Evaluator
                 return 1;
             }
             return 0;
+    }
+}
+
+public class AllyDistanceEvaluator : Evaluator
+{
+    public AllyDistanceEvaluator(float weight) : base(weight)
+    {
+    }
+
+    public override float EvaluatePoint(SamplePoint point, Agent agent)
+    {
+        List<GameObject> allyObjects = TeamComponent.GetMatchingTeamObjectList(agent.teamComponent.team);
+        if(allyObjects.IsNullOrEmpty()) return 0;
+
+        float score = 0;
+        foreach (GameObject ally in allyObjects)
+        {
+            score += (agent.agentInfo.maxDistanceFromAlly - Vector2.Distance(agent.transform.position, ally.transform.position)) / agent.agentInfo.maxDistanceFromAlly;
+        }
+
+        score /= allyObjects.Count;
+
+        if(score < 0) score = 0;
+        else if(score > 1) score = 1;
+        
+        return score;
     }
 }

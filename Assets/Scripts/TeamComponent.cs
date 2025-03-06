@@ -57,6 +57,19 @@ public class TeamComponent : MonoBehaviour
         }
     }
 
+    public static List<GameObject> GetMatchingTeamObjectList(Team team){
+        InitializeLists();
+        switch (team)
+        {
+            case Team.FRIENDLY:
+                return friendlyObjects;
+            case Team.ENEMY:
+                return enemyObjects;
+            default:
+                return null;
+        }
+    }
+
     public static List<GameObject> GetOppositeTeamObjectList(Team team){
         InitializeLists();
         switch (team)

@@ -13,4 +13,7 @@ public class AgentInfo : ScriptableObject
 
     [Header("Agent Distance Evaluator")]
     public float maxDistanceFromSamplePoint;
+
+    [Header("Ally Distance Evaluator")]
+    public float maxDistanceFromAlly;
 }

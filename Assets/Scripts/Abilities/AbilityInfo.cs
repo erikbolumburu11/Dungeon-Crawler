@@ -8,7 +8,8 @@ public class AbilityInfo : ScriptableObject
 {
     public string abilityName;
     public string abilityActionKey;
+    public float abilityCooldown;
     public int projectileCount;
     public GameObject prefab;
-    public Image image;
+    public Sprite image;
 }

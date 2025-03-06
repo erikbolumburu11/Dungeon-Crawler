@@ -65,7 +65,5 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  enemyDistanceMagnitude: 5.8
   maxDistanceFromSamplePoint: 6.5
-  agentDistanceMagnitude: 0.98
-  visibilityMagnitude: 2.85
+  maxDistanceFromAlly: 10

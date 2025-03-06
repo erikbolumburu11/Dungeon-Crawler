@@ -270,8 +270,28 @@ PrefabInstance:
       value: Ranged Ally
       objectReference: {fileID: 0}
     - target: {fileID: 3355835228301824127, guid: 6c78634803b59c9479135970fb4e7c1f, type: 3}
+      propertyPath: health
+      value: 175
+      objectReference: {fileID: 0}
+    - target: {fileID: 3355835228301824127, guid: 6c78634803b59c9479135970fb4e7c1f, type: 3}
+      propertyPath: maxHealth
+      value: 175
+      objectReference: {fileID: 0}
+    - target: {fileID: 3355835228301824127, guid: 6c78634803b59c9479135970fb4e7c1f, type: 3}
+      propertyPath: onHitEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3355835228301824127, guid: 6c78634803b59c9479135970fb4e7c1f, type: 3}
       propertyPath: onHitEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
+      objectReference: {fileID: 4553513940449328217}
+    - target: {fileID: 3355835228301824127, guid: 6c78634803b59c9479135970fb4e7c1f, type: 3}
+      propertyPath: onHitEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Play
+      objectReference: {fileID: 0}
+    - target: {fileID: 3355835228301824127, guid: 6c78634803b59c9479135970fb4e7c1f, type: 3}
+      propertyPath: onHitEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UnityEngine.ParticleSystem, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 5843164525185678438, guid: 6c78634803b59c9479135970fb4e7c1f, type: 3}
       propertyPath: m_BlockingMask.m_Bits
@@ -384,6 +404,11 @@ BoxCollider2D:
   m_CorrespondingSourceObject: {fileID: 8713711949680624982, guid: 6c78634803b59c9479135970fb4e7c1f, type: 3}
   m_PrefabInstance: {fileID: 5371629270006576319}
   m_PrefabAsset: {fileID: 0}
+--- !u!198 &4553513940449328217 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 8483243007738398950, guid: 6c78634803b59c9479135970fb4e7c1f, type: 3}
+  m_PrefabInstance: {fileID: 5371629270006576319}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &4888369396225648216 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 674737629572272871, guid: 6c78634803b59c9479135970fb4e7c1f, type: 3}
@@ -401,6 +426,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 591d0526148d7bb408052637f4669277, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  teamComponent: {fileID: 0}
   agentInfo: {fileID: 11400000, guid: 3e2206ddd6c7ea945a0fce93422e3b29, type: 2}
   spatialQueryField: {fileID: 0}
   movementCollider: {fileID: 3631746854558855657}
@@ -455,6 +481,7 @@ MonoBehaviour:
   ringCount: 3
   pointsPerRing: 15
   distanceBetweenRings: 2
+  activeEvaluators: []
   drawSpatialField: 1
 --- !u!114 &9093059522457696071
 MonoBehaviour:

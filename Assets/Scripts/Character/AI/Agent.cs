@@ -8,7 +8,7 @@ public class Agent : MonoBehaviour
 {
     protected BehaviourTree tree;
     CharacterLocomotion locomotion;
-    TeamComponent teamComponent;
+    public TeamComponent teamComponent;
     public AgentInfo agentInfo;
     public SpatialQueryField spatialQueryField;
     LookAtPos lookAtPos;

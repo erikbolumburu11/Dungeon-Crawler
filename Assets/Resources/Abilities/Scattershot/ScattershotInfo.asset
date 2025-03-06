@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilityName: Scattershot
   abilityActionKey: Scattershot
+  abilityCooldown: 2
   projectileCount: 3
   prefab: {fileID: 0}
-  image: {fileID: 0}
+  image: {fileID: 21300000, guid: 313eb4d0157f6ec418d857892d7b44ad, type: 3}

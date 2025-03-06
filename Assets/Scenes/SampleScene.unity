@@ -1200,7 +1200,7 @@ PrefabInstance:
       objectReference: {fileID: 22100000, guid: bcb160c0d2248f045bdeb18afde4573c, type: 2}
     - target: {fileID: 7455135960596007426, guid: 64e6e4cbcfdcb2644ba271e2d195ccf9, type: 3}
       propertyPath: activeEvaluators.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7455135960596007426, guid: 64e6e4cbcfdcb2644ba271e2d195ccf9, type: 3}
       propertyPath: activeEvaluators.Array.data[0]
@@ -1219,6 +1219,10 @@ PrefabInstance:
       value: 2.85
       objectReference: {fileID: 0}
     - target: {fileID: 7455135960596007426, guid: 64e6e4cbcfdcb2644ba271e2d195ccf9, type: 3}
+      propertyPath: activeEvaluators.Array.data[3].weight
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7455135960596007426, guid: 64e6e4cbcfdcb2644ba271e2d195ccf9, type: 3}
       propertyPath: activeEvaluators.Array.data[0].className
       value: EnemyDistanceEvaluator
       objectReference: {fileID: 0}
@@ -1229,6 +1233,10 @@ PrefabInstance:
     - target: {fileID: 7455135960596007426, guid: 64e6e4cbcfdcb2644ba271e2d195ccf9, type: 3}
       propertyPath: activeEvaluators.Array.data[2].className
       value: VisibilityEvaluator
+      objectReference: {fileID: 0}
+    - target: {fileID: 7455135960596007426, guid: 64e6e4cbcfdcb2644ba271e2d195ccf9, type: 3}
+      propertyPath: activeEvaluators.Array.data[3].className
+      value: AllyDistanceEvaluator
       objectReference: {fileID: 0}
     - target: {fileID: 7475132061585859604, guid: 64e6e4cbcfdcb2644ba271e2d195ccf9, type: 3}
       propertyPath: lerpSpeed
@@ -1549,7 +1557,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 853460716}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 49.56, y: 21.649998, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

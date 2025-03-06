@@ -12,18 +12,14 @@ public class SpatialQueryField : MonoBehaviour
 
     [SerializeField] Gradient pointScoreColorGradient;
 
+    [TabGroup("Ring Generator Settings")] public int ringCount;
+    [TabGroup("Ring Generator Settings")] public int pointsPerRing;
+    [TabGroup("Ring Generator Settings")] public float distanceBetweenRings;
 
-    [Header("Ring Generator Settings")]
-    public int ringCount;
-    public int pointsPerRing;
-    public float distanceBetweenRings;
-
-    [Header("Evaluator Settings")]
-    public List<EvaluatorSetting> activeEvaluators;
-
+    [TabGroup("Evaluators")] public List<EvaluatorSetting> activeEvaluators;
     List<object> evaluators;
 
-    [Button(ButtonSizes.Medium)]
+    [Button(ButtonSizes.Medium), TabGroup("Evaluators")]
     public void UpdateEvaluators(){
         evaluators = new();
         foreach (EvaluatorSetting evaluatorSetting in activeEvaluators)
@@ -39,7 +35,7 @@ public class SpatialQueryField : MonoBehaviour
         }
     }
 
-    [Header("Debug")]
+    [TabGroup("Debug")]
     [SerializeField] bool drawSpatialField;
 
     void Awake()

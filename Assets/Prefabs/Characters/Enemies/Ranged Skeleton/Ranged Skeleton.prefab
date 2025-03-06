@@ -159,6 +159,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ranged Skeleton
       objectReference: {fileID: 0}
+    - target: {fileID: 3355835228301824127, guid: 6c78634803b59c9479135970fb4e7c1f, type: 3}
+      propertyPath: health
+      value: 75
+      objectReference: {fileID: 0}
+    - target: {fileID: 3355835228301824127, guid: 6c78634803b59c9479135970fb4e7c1f, type: 3}
+      propertyPath: maxHealth
+      value: 75
+      objectReference: {fileID: 0}
     - target: {fileID: 5843164525185678438, guid: 6c78634803b59c9479135970fb4e7c1f, type: 3}
       propertyPath: m_BlockingMask.m_Bits
       value: 119
@@ -272,6 +280,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 591d0526148d7bb408052637f4669277, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  teamComponent: {fileID: 0}
   agentInfo: {fileID: 11400000, guid: a082f04343e117b418eac8390cdbb2ed, type: 2}
   spatialQueryField: {fileID: 0}
   movementCollider: {fileID: 3631746854558855657}
@@ -326,6 +335,7 @@ MonoBehaviour:
   ringCount: 3
   pointsPerRing: 15
   distanceBetweenRings: 2
+  activeEvaluators: []
   drawSpatialField: 1
 --- !u!114 &9093059522457696071
 MonoBehaviour:
