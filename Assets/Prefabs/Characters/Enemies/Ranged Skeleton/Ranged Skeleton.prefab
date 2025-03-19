@@ -286,6 +286,7 @@ MonoBehaviour:
   movementCollider: {fileID: 3631746854558855657}
   target: {fileID: 0}
   posEnemyLastVisible: {x: 0, y: 0, z: 0}
+  experienceGivenOnDeath: 100
   currentStateName: 
   drawPath: 1
   drawAgentInfo: 1

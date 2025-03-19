@@ -14,7 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilityName: Fireball
   abilityActionKey: Fireball
-  abilityCooldown: 1
+  abilityCooldown: 0.75
+  hasMaxCastRange: 0
+  maxCastRange: 0
   projectileCount: 1
   prefab: {fileID: 0}
   image: {fileID: 21300000, guid: dd3885098198d104888439be4c590aba, type: 3}
+  abilityDescription: Shoot a fireball towards your mouse position!

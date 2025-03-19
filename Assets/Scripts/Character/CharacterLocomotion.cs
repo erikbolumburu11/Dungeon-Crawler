@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,9 +15,11 @@ public class CharacterLocomotion : MonoBehaviour
     [SerializeField] Animator bodyAnimator;
     [SerializeField] SpriteRenderer bodySprite;
     Rigidbody2D rigidBody;
+    CharacterStatistics characterStatistics;
 
     [Header("Character Data")]
     public float moveSpeed;
+    float baseMoveSpeed;
 
     public Dictionary<StatusEffect, bool> statusEffects;
 
@@ -24,6 +27,9 @@ public class CharacterLocomotion : MonoBehaviour
 
     void Awake(){
         rigidBody = GetComponent<Rigidbody2D>();
+        baseMoveSpeed = moveSpeed;
+        characterStatistics = GetComponent<CharacterStatistics>();
+        
         statusEffects = new();
     }
 
@@ -32,6 +38,14 @@ public class CharacterLocomotion : MonoBehaviour
         SetLookDirection();
 
         bodyAnimator.SetBool("Moving", moveDir.magnitude > 0);
+
+        UpdateMoveSpeed();
+    }
+
+    private void UpdateMoveSpeed()
+    {
+        if(characterStatistics == null) return;
+        moveSpeed = baseMoveSpeed + (characterStatistics.agility * 0.25f);
     }
 
     void FixedUpdate() {

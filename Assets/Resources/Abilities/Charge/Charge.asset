@@ -14,7 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilityName: Charge
   abilityActionKey: Charge
-  abilityCooldown: 5
+  abilityCooldown: 3.5
+  hasMaxCastRange: 0
+  maxCastRange: 0
   projectileCount: 0
   prefab: {fileID: 0}
   image: {fileID: 21300000, guid: c46d83f2b73aaa141bd5015819342d81, type: 3}
+  abilityDescription: Charge into an enemy to stun them!

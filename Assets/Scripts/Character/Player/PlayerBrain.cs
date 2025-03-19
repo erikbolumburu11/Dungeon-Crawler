@@ -8,7 +8,9 @@ public class PlayerBrain : MonoBehaviour
 
     [SerializeField] InputActionReference moveInput;
     [SerializeField] InputActionReference attackInput;
-    [SerializeField] InputActionReference castAbilityInput;
+    [SerializeField] InputActionReference castAbility1Input;
+    [SerializeField] InputActionReference castAbility2Input;
+    [SerializeField] InputActionReference castAbility3Input;
 
     void Start()
     {
@@ -20,11 +22,15 @@ public class PlayerBrain : MonoBehaviour
     }
 
     void OnEnable(){
-        castAbilityInput.action.started += CastAbility;
+        castAbility1Input.action.started += CastAbility1;
+        castAbility2Input.action.started += CastAbility2;
+        castAbility3Input.action.started += CastAbility3;
     }
 
     void OnDisable(){
-        castAbilityInput.action.started  -= CastAbility;
+        castAbility1Input.action.started -= CastAbility1;
+        castAbility2Input.action.started -= CastAbility2;
+        castAbility3Input.action.started -= CastAbility3;
     }
 
     void Update()
@@ -47,8 +53,18 @@ public class PlayerBrain : MonoBehaviour
         }
     }
 
-    void CastAbility(InputAction.CallbackContext callbackContext){
+    void CastAbility1(InputAction.CallbackContext callbackContext){
         if(TryGetComponent(out CharacterAbilities abilities)) 
             abilities.CastAbility(0);
+    }
+
+    void CastAbility2(InputAction.CallbackContext callbackContext){
+        if(TryGetComponent(out CharacterAbilities abilities)) 
+            abilities.CastAbility(1);
+    }
+
+    void CastAbility3(InputAction.CallbackContext callbackContext){
+        if(TryGetComponent(out CharacterAbilities abilities)) 
+            abilities.CastAbility(2);
     }
 }

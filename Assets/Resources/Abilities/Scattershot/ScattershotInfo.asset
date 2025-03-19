@@ -14,7 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilityName: Scattershot
   abilityActionKey: Scattershot
-  abilityCooldown: 2
+  abilityCooldown: 1
+  hasMaxCastRange: 0
+  maxCastRange: 0
   projectileCount: 3
   prefab: {fileID: 0}
   image: {fileID: 21300000, guid: 313eb4d0157f6ec418d857892d7b44ad, type: 3}
+  abilityDescription: Fire a volley of arrows towards your mouse position!

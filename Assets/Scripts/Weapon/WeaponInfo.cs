@@ -3,12 +3,19 @@ using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
+public enum DamageType {
+    PHYSICAL,
+    MAGIC,
+    AGILITY
+}
+
 public class WeaponInfo : ScriptableObject
 {
     public string weaponName;
     public GameObject prefab;
     public RuntimeAnimatorController animator;
 
+    public DamageType damageType = DamageType.PHYSICAL;
 
     bool IsRanged => false;
 

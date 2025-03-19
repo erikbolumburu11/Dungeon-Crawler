@@ -13,6 +13,18 @@ public class CharacterAbilities : MonoBehaviour
     }
 
     public void CastAbility(int index){
+        if(equippedAbilites.Count <= index) return;
+
+        AbilityInfo ability = equippedAbilites[index];
+
+        if(ability.hasMaxCastRange){
+            Vector3 screenMousePos = Input.mousePosition;
+            Vector3 worldMousePos = Camera.main.ScreenToWorldPoint(screenMousePos);
+            worldMousePos.z = 0;
+
+            if(Vector2.Distance(transform.position, worldMousePos) > ability.maxCastRange) return;
+        }
+
         if(!readyToCast.ContainsKey(index)) readyToCast.Add(index, true);
         if(!readyToCast[index]) return; 
 
@@ -25,8 +37,6 @@ public class CharacterAbilities : MonoBehaviour
                 }
             }
         );
-
-        AbilityInfo ability = equippedAbilites[index];
 
         AbilityCastData castData = new AbilityCastData(){
             caster = gameObject,

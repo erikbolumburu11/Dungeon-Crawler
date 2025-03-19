@@ -15,9 +15,11 @@ MonoBehaviour:
   weaponName: Wooden Arrow
   prefab: {fileID: 3291841718896941339, guid: e8879a08d3d2c1b49b5a2f7b8ad394eb, type: 3}
   animator: {fileID: 0}
+  damageType: 2
   hitCooldown: 0.2
   damage: 20
   knockbackForce: 5
   key: Wooden Arrow
   speed: 40
   destroyedOnLevelCollision: 1
+  onHitEffectPrefab: {fileID: 0}

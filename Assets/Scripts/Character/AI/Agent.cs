@@ -24,6 +24,9 @@ public class Agent : MonoBehaviour
     public Vector3 posEnemyLastVisible;
     Dictionary<GameObject, float> enemyLastSeenTimeMap;
 
+    public float experienceGivenOnDeath;
+    public const float XPRANGE = 50;
+
     [Header("Debug")]
     [SerializeField] string currentStateName;
     [SerializeField] bool drawPath;
@@ -41,12 +44,9 @@ public class Agent : MonoBehaviour
         TeamComponent.AddToTeamObjectList(gameObject);
     }
 
-    void Start()
-    {
-    }
-
     public void OnDestroy(){
         TeamComponent.RemoveFromTeamObjectList(gameObject);
+        GiveExperience();
     }
 
     void Update() {
@@ -138,6 +138,19 @@ public class Agent : MonoBehaviour
         if(!GetVisibleEnemies().IsNullOrEmpty() || (Time.time > 5 && Time.time - timeEnemyLastVisible < 5))
             return true;
         return false;
+    }
+
+    private void GiveExperience()
+    {
+        List<GameObject> enemies = TeamComponent.GetOppositeTeamObjectList(teamComponent.team);
+
+        enemies = enemies.Where(
+            x => Vector2.Distance(transform.position, x.transform.position) <= XPRANGE
+        ).ToList();
+
+        foreach (GameObject enemy in enemies)
+            if(enemy.TryGetComponent(out CharacterExperience characterExperience))
+                characterExperience.AddExperience(experienceGivenOnDeath);
     }
 
     #if UNITY_EDITOR

@@ -22,7 +22,7 @@ public class ChargeImpactBehaviour : MonoBehaviour
             if(myTeam == otherTeam) return;
 
             if(other.TryGetComponent(out Health enemyHealth)){
-                enemyHealth.Damage(damage, hitCooldownDuration);
+                enemyHealth.Damage(damage, hitCooldownDuration, DamageType.PHYSICAL, null);
             }
 
             if(other.TryGetComponent(out CharacterLocomotion characterLocomotion)){
