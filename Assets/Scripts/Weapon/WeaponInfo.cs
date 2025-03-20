@@ -9,9 +9,8 @@ public enum DamageType {
     AGILITY
 }
 
-public class WeaponInfo : ScriptableObject
+public class WeaponInfo : ItemInfo
 {
-    public string weaponName;
     public GameObject prefab;
     public RuntimeAnimatorController animator;
 

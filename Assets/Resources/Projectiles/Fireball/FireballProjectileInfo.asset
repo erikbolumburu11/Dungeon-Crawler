@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06ce101e939ae9b41adfbc85bfe8dd1f, type: 3}
   m_Name: FireballProjectileInfo
   m_EditorClassIdentifier: 
-  weaponName: Fireball
+  name: Fireball Projectile
+  image: {fileID: 0}
+  equipSlot: 0
   prefab: {fileID: 5680174691170326385, guid: 1e160f739858c7e4fac4cebc18117ef0, type: 3}
   animator: {fileID: 0}
   damageType: 1

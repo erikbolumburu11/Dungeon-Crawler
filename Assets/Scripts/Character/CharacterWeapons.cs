@@ -4,16 +4,17 @@ using UnityEngine;
 
 public class CharacterWeapons : MonoBehaviour
 {
+    Inventory inventory;
     [SerializeField] Animator weaponAnimator;
-    [SerializeField] EquippableWeaponInfo equippedWeapon;
+    [SerializeField] EquippableWeaponInfo startingWeapon;
     GameObject instantiatedWeapon;
     [SerializeField] Transform weaponHandlePoint;
     [SerializeField] LookAtMouse weaponMouseFollow;
 
-
     void Awake(){
-        if(equippedWeapon == null) return;
-        EquipWeapon(equippedWeapon);
+        inventory = GetComponent<Inventory>();
+        if(startingWeapon == null) return;
+        EquipWeapon(startingWeapon);
     }
 
     void Update(){
@@ -24,20 +25,23 @@ public class CharacterWeapons : MonoBehaviour
         if(weaponMouseFollow == null) return;
 
         if(TryGetComponent(out CharacterAttack characterAttack)){
-            if(characterAttack.IsAttacking() && equippedWeapon.attackingLocksWeaponDir)
-                weaponMouseFollow.enabled = false;
+            if(characterAttack.IsAttacking() && GetEquippedWeaponInfo().attackingLocksWeaponDir)
+                weaponMouseFollow.setRotation = false;
             else
-                weaponMouseFollow.enabled = true;
+                weaponMouseFollow.setRotation = true;
         }
     }
 
-    void EquipWeapon(EquippableWeaponInfo weaponInfo){
-        equippedWeapon = weaponInfo;
-        instantiatedWeapon = Instantiate(equippedWeapon.prefab, weaponHandlePoint);
-        weaponAnimator.runtimeAnimatorController = equippedWeapon.animator;
+    public void EquipWeapon(EquippableWeaponInfo weaponInfo){
+        if(instantiatedWeapon != null) Destroy(instantiatedWeapon);
+        if(GetEquippedWeaponInfo() != null) inventory.AddItem(GetEquippedWeaponInfo());
+
+        inventory.equippedItems[EquipSlot.WEAPON] = weaponInfo;
+        instantiatedWeapon = Instantiate(GetEquippedWeaponInfo().prefab, weaponHandlePoint);
+        weaponAnimator.runtimeAnimatorController = GetEquippedWeaponInfo().animator;
 
         if(weaponMouseFollow != null)
-            weaponMouseFollow.rotationOffset = equippedWeapon.weaponLookDirOffset;
+            weaponMouseFollow.rotationOffset = GetEquippedWeaponInfo().weaponLookDirOffset;
 
         instantiatedWeapon.AddComponent<TeamComponent>().team = GetComponent<TeamComponent>().team;
 
@@ -47,7 +51,7 @@ public class CharacterWeapons : MonoBehaviour
     }
 
     public EquippableWeaponInfo GetEquippedWeaponInfo(){
-        return equippedWeapon;
+        return (EquippableWeaponInfo)inventory.equippedItems[EquipSlot.WEAPON];
     }
 
     public GameObject GetInstantiatedWeapon(){

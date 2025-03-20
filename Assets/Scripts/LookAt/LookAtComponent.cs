@@ -9,4 +9,8 @@ public abstract class LookAtComponent : MonoBehaviour
     public void SetTargetPos(Vector3 pos){
         targetPos = pos;
     }
+
+    public Vector3 GetTargetPos(){
+        return targetPos;
+    }
 }

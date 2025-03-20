@@ -40,6 +40,7 @@ public class InventoryScreenUI : MonoBehaviour
             else{
                 image.sprite = null;
                 image.color = emptyItemSlotColor;
+                instantiatedItemUIElements[i].GetComponent<InventoryItemUI>().itemInfo = null;
             }
         }
     }

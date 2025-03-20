@@ -12,9 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5dfb7e5d9f6b5ba4087bdced5ce7dc3a, type: 3}
   m_Name: Wooden Staff
   m_EditorClassIdentifier: 
-  weaponName: Wooden Staff
+  name: Wooden Staff
+  image: {fileID: 1801491586, guid: 13363bca3134e874ebe663c96307643f, type: 3}
+  equipSlot: 4
   prefab: {fileID: 6030778754073060648, guid: 95d7c4b7893d2514bab2868806a2becc, type: 3}
   animator: {fileID: 22100000, guid: 1d2ad4f2553f5444a8d70aa3ff3a6f6a, type: 2}
+  damageType: 0
   hitCooldown: 0.1
   damage: 1
   knockbackForce: 5

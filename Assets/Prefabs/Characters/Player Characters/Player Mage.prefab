@@ -52,6 +52,10 @@ PrefabInstance:
       propertyPath: equippedWeapon
       value: 
       objectReference: {fileID: 11400000, guid: b11c6820ebef89046b3de3fb6f32fdf8, type: 2}
+    - target: {fileID: 3164572794237338416, guid: c9374e69ef32c484fb620525e58257e4, type: 3}
+      propertyPath: startingWeapon
+      value: 
+      objectReference: {fileID: 11400000, guid: b11c6820ebef89046b3de3fb6f32fdf8, type: 2}
     - target: {fileID: 3551491644657043901, guid: c9374e69ef32c484fb620525e58257e4, type: 3}
       propertyPath: characterLevels.Array.data[0].abilityUnlocked
       value: 

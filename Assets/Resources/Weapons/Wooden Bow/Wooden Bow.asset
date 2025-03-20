@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b525418cb95be04293100455afce1d3, type: 3}
   m_Name: Wooden Bow
   m_EditorClassIdentifier: 
-  weaponName: Wooden Bow
+  name: Wooden Bow
+  image: {fileID: 1294425986, guid: 13363bca3134e874ebe663c96307643f, type: 3}
+  equipSlot: 4
   prefab: {fileID: 6546873738015749041, guid: 78bc47cdba93e9c4d84770c21389044c, type: 3}
   animator: {fileID: 22100000, guid: bcb160c0d2248f045bdeb18afde4573c, type: 2}
   damageType: 2

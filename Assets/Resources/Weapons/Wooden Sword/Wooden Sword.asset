@@ -12,9 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5dfb7e5d9f6b5ba4087bdced5ce7dc3a, type: 3}
   m_Name: Wooden Sword
   m_EditorClassIdentifier: 
-  weaponName: Wooden Sword
+  name: Wooden Sword
+  image: {fileID: -590237116, guid: 13363bca3134e874ebe663c96307643f, type: 3}
+  equipSlot: 4
   prefab: {fileID: 6030778754073060648, guid: e6e33700bc6860b4aba8c46a8278a1e4, type: 3}
   animator: {fileID: 22100000, guid: 1d2ad4f2553f5444a8d70aa3ff3a6f6a, type: 2}
+  damageType: 0
   hitCooldown: 1
   damage: 20
   knockbackForce: 10

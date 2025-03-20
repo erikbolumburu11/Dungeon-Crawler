@@ -48,14 +48,13 @@ public class CharacterAttack : MonoBehaviour
 
         float elapsedTime = 0;
 
-        Vector3 screenMousePos = Input.mousePosition;
-        Vector3 worldMousePos = Camera.main.ScreenToWorldPoint(screenMousePos);
+        Vector3 targetLookPos = GetComponentInChildren<LookAtComponent>().GetTargetPos();
 
         // Change to Vec2
         Vector2 attackDir = new Vector3(
-            worldMousePos.x - weaponLookOrbit.transform.position.x,
-            worldMousePos.y - weaponLookOrbit.transform.position.y
-        );
+            targetLookPos.x - weaponLookOrbit.transform.position.x,
+            targetLookPos.y - weaponLookOrbit.transform.position.y
+        ).normalized;
 
         Vector2 rotatedDir = Quaternion.AngleAxis(characterWeapons.GetEquippedWeaponInfo().weaponLookDirOffset, Vector3.forward) * attackDir;
 
