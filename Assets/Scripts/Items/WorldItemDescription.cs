@@ -10,6 +10,11 @@ public class WorldItemDescription : MonoBehaviour
     [SerializeField] GameObject panel;
     [SerializeField] TMP_Text itemNameText;
 
+    void Awake()
+    {
+        if(itemInfo != null) SetInfo(itemInfo);
+    }
+
     private void OnTriggerEnter2D(Collider2D other) {
         if(other.TryGetComponent(out PlayerBrain playerBrain)){
             panel.SetActive(true);

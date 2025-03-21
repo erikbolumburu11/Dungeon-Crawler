@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Iron Helmet
   m_EditorClassIdentifier: 
   name: Iron Helmet
-  image: {fileID: 2014489634, guid: 44e63640b59992648b2aa1e0807f7696, type: 3}
+  image: {fileID: 21300000, guid: 4dc49d899ca81f545a9653ccef798789, type: 3}
   equipSlot: 0
