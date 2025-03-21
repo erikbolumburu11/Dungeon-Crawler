@@ -55,18 +55,18 @@ public class Health : MonoBehaviour
 
         if(hitByCharstats != null){
             if(damageType == DamageType.PHYSICAL){
-                damage += hitByCharstats.strength;
+                damage += hitByCharstats.GetStatistics().strength;
             }
             else if(damageType == DamageType.AGILITY){
-                damage += hitByCharstats.agility;
+                damage += hitByCharstats.GetStatistics().agility;
             }
             else if(damageType == DamageType.MAGIC){
-                damage += hitByCharstats.intelligence;
+                damage += hitByCharstats.GetStatistics().intelligence;
             }
         }
 
         if(characterStatistics != null){
-            damage -= characterStatistics.defense;
+            damage -= characterStatistics.GetStatistics().defense;
         }
 
         return damage;

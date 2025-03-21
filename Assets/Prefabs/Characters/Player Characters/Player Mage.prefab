@@ -36,6 +36,22 @@ PrefabInstance:
       propertyPath: intelligence
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 2399530831759059259, guid: c9374e69ef32c484fb620525e58257e4, type: 3}
+      propertyPath: baseStatistics.agility
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2399530831759059259, guid: c9374e69ef32c484fb620525e58257e4, type: 3}
+      propertyPath: baseStatistics.defense
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2399530831759059259, guid: c9374e69ef32c484fb620525e58257e4, type: 3}
+      propertyPath: baseStatistics.strength
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2399530831759059259, guid: c9374e69ef32c484fb620525e58257e4, type: 3}
+      propertyPath: baseStatistics.intelligence
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 2930298608650730150, guid: c9374e69ef32c484fb620525e58257e4, type: 3}
       propertyPath: equippedAbilites.Array.size
       value: 0

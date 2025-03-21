@@ -45,7 +45,7 @@ public class CharacterLocomotion : MonoBehaviour
     private void UpdateMoveSpeed()
     {
         if(characterStatistics == null) return;
-        moveSpeed = baseMoveSpeed + (characterStatistics.agility * 0.25f);
+        moveSpeed = baseMoveSpeed + (characterStatistics.GetStatistics().agility * 0.25f);
     }
 
     void FixedUpdate() {

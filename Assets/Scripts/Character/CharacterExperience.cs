@@ -65,10 +65,10 @@ public class CharacterExperience : MonoBehaviour
         }
 
         if(TryGetComponent(out CharacterStatistics cs)){
-            cs.strength += characterLevels[currentLevel].strengthIncrease;
-            cs.defense += characterLevels[currentLevel].defenseIncrease;
-            cs.intelligence += characterLevels[currentLevel].intelligenceIncrease;
-            cs.agility += characterLevels[currentLevel].agilityIncrease;
+            cs.baseStatistics.strength += characterLevels[currentLevel].strengthIncrease;
+            cs.baseStatistics.defense += characterLevels[currentLevel].defenseIncrease;
+            cs.baseStatistics.intelligence += characterLevels[currentLevel].intelligenceIncrease;
+            cs.baseStatistics.agility += characterLevels[currentLevel].agilityIncrease;
         }
 
         CheckLevelUp();

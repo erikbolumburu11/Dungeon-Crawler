@@ -24,9 +24,9 @@ public class CharacterScreenUI : MonoBehaviour
     void Update()
     {
         levelText.text = $"Level: {experience.displayLevel}";
-        strengthText.text = $"Strength: {stats.strength}";
-        defenseText.text = $"Defense: {stats.defense}";
-        intelligenceText.text = $"Intelligence: {stats.intelligence}";
-        agilityText.text = $"Agility: {stats.agility}";
+        strengthText.text = $"Strength: {stats.GetStatistics().strength}";
+        defenseText.text = $"Defense: {stats.GetStatistics().defense}";
+        intelligenceText.text = $"Intelligence: {stats.GetStatistics().intelligence}";
+        agilityText.text = $"Agility: {stats.GetStatistics().agility}";
     }
 }
