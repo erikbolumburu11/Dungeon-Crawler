@@ -29,7 +29,7 @@ public class ScattershotAbilityAction : AbilityAction
             );
 
             projectile.GetComponent<ProjectileBehaviour>()
-                .SetProjectileInfo(projectileInfo, castData.caster.GetComponent<TeamComponent>().team);
+                .SetProjectileInfo(projectileInfo, castData.caster.GetComponent<TeamComponent>().team, castData.caster);
         }
 
     }

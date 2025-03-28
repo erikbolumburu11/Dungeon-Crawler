@@ -12,6 +12,7 @@ public class Agent : MonoBehaviour
     public AgentInfo agentInfo;
     public SpatialQueryField spatialQueryField;
     LookAtPos lookAtPos;
+    TargetSelection targetSelection;
 
     [SerializeField] Collider2D movementCollider;
 
@@ -37,6 +38,7 @@ public class Agent : MonoBehaviour
         locomotion = GetComponent<CharacterLocomotion>();
         teamComponent = GetComponent<TeamComponent>();
         spatialQueryField = GetComponent<SpatialQueryField>();
+        targetSelection = GetComponent<TargetSelection>();
         lookAtPos = GetComponentInChildren<LookAtPos>();
 
         enemyLastSeenTimeMap = new();
@@ -55,7 +57,7 @@ public class Agent : MonoBehaviour
 
         if(locomotion != null) MoveToDestination();        
 
-        target = TargetSelection.SelectTarget(this);
+        if(targetSelection != null) target = targetSelection.SelectTarget(this);
         if(target != null) posEnemyLastVisible = target.transform.position;
 
         if(!GetVisibleEnemies().IsNullOrEmpty()) timeEnemyLastVisible = Time.time;
@@ -82,6 +84,12 @@ public class Agent : MonoBehaviour
             destinationTile,
             movementCollider
         );
+    }
+
+
+    public void ResetDestination()
+    {
+        destinationTile = null;
     }
 
     void MoveToDestination(){
@@ -135,8 +143,12 @@ public class Agent : MonoBehaviour
     }
 
     public bool IsInCombat(){
-        if(!GetVisibleEnemies().IsNullOrEmpty() || (Time.time > 5 && Time.time - timeEnemyLastVisible < 5))
-            return true;
+        if(
+            !GetVisibleEnemies().IsNullOrEmpty() || 
+            (Time.time > 5 && Time.time - timeEnemyLastVisible < 5) ||
+            targetSelection.recentHitEntries.Count > 0
+        ) return true;
+
         return false;
     }
 
@@ -193,5 +205,5 @@ public class Agent : MonoBehaviour
         }
         #endregion AGENT_INFO
     }
-    #endif
+#endif
 }

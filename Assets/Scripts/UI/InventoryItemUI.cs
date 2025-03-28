@@ -9,11 +9,13 @@ public class InventoryItemUI : MonoBehaviour
 
     [SerializeField] GameObject itemInfoPanel;
     [SerializeField] TMP_Text itemNameText;
+    [SerializeField] TMP_Text itemModifiersText;
 
     public void ShowInfoPanel(){
         if(itemInfo == null) return; 
 
         itemNameText.text = itemInfo.name;
+        if(itemInfo is ArmourInfo armour) itemModifiersText.text = WorldItemDescription.GenerateArmourModifierText(armour);
         itemInfoPanel.SetActive(true);
     }
 
@@ -34,6 +36,8 @@ public class InventoryItemUI : MonoBehaviour
             }
         }
 
+        HideInfoPanel();
+
         inventory.EquipItem(itemInfo);
     }
 
@@ -41,5 +45,6 @@ public class InventoryItemUI : MonoBehaviour
         if(itemInfo == null) return;
         Inventory inventory = GetComponentInParent<Inventory>();
         inventory.UnequipItem(itemInfo);
+        HideInfoPanel();
     }
 }

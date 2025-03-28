@@ -15,3 +15,8 @@ MonoBehaviour:
   name: Iron Leggings
   image: {fileID: 21300000, guid: a8bb4c423162b954eb49c4c1d7f67e6a, type: 3}
   equipSlot: 2
+  statisticBonuses:
+    strength: 3
+    defense: 3
+    intelligence: 0
+    agility: -2

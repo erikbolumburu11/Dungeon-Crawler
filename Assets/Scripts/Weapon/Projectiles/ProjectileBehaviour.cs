@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class ProjectileBehaviour : WeaponBehaviour
 {
-    Rigidbody2D rigidBody;
-    ProjectileInfo projectileInfo;
+    internal Rigidbody2D rigidBody;
+    internal ProjectileInfo projectileInfo;
 
     void Awake(){
         rigidBody = GetComponent<Rigidbody2D>();
@@ -17,13 +17,14 @@ public class ProjectileBehaviour : WeaponBehaviour
     }
 
     // Must be called from wherever creates this. Very bad.
-    public void SetProjectileInfo(ProjectileInfo projectileInfo, Team team){
+    public void SetProjectileInfo(ProjectileInfo projectileInfo, Team team, GameObject owner){
         this.projectileInfo = projectileInfo;
+        this.owner = owner;
         weaponInfo = projectileInfo;
         GetComponent<TeamComponent>().team = team;
     }
 
-    void OnTriggerEnter2D(Collider2D other)
+    public virtual void OnTriggerEnter2D(Collider2D other)
     {
         switch(other.tag){
             case "Level":
@@ -43,7 +44,7 @@ public class ProjectileBehaviour : WeaponBehaviour
         }
     }
 
-    void InstantiateOnHitEffect(){
+    internal void InstantiateOnHitEffect(){
         if(projectileInfo.onHitEffectPrefab == null) return;
         Instantiate(projectileInfo.onHitEffectPrefab, transform.position, Quaternion.identity);
     }

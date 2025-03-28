@@ -5,4 +5,5 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Default Armour Info", menuName = "Armour Info")]
 public class ArmourInfo : ItemInfo
 {
+    [SerializeField] public Statistics statisticBonuses;
 }

@@ -17,6 +17,7 @@ MonoBehaviour:
   equipSlot: 4
   prefab: {fileID: 6546873738015749041, guid: 78bc47cdba93e9c4d84770c21389044c, type: 3}
   animator: {fileID: 22100000, guid: bcb160c0d2248f045bdeb18afde4573c, type: 2}
+  attackSound: {fileID: 8300000, guid: 6b1edffa4bc63d64c87ece72038d6f3d, type: 3}
   damageType: 2
   hitCooldown: 0
   damage: 0

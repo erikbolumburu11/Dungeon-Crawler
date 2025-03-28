@@ -9,6 +9,7 @@ public class WorldItemDescription : MonoBehaviour
 
     [SerializeField] GameObject panel;
     [SerializeField] TMP_Text itemNameText;
+    [SerializeField] TMP_Text itemModifiersText;
 
     void Awake()
     {
@@ -29,7 +30,25 @@ public class WorldItemDescription : MonoBehaviour
 
     public void SetInfo(ItemInfo itemInfo){
         itemNameText.text = itemInfo.name;
+        if(itemInfo is ArmourInfo armour) itemModifiersText.text = GenerateArmourModifierText(armour);
         this.itemInfo = itemInfo;
         GetComponent<SpriteRenderer>().sprite = itemInfo.image;
+    }
+
+    public static string GenerateArmourModifierText(ArmourInfo armour){
+        Statistics stats = armour.statisticBonuses;
+        string text = ""; 
+
+        if(stats.strength != 0) text += AddModifierColor($"Strength: {stats.strength}\n", stats.strength);
+        if(stats.defense != 0) text += AddModifierColor($"Defense: {stats.defense}\n", stats.defense);
+        if(stats.intelligence != 0) text += AddModifierColor($"Intelligence: {stats.intelligence}\n", stats.intelligence);
+        if(stats.agility != 0) text += AddModifierColor($"Agility: {stats.agility}\n", stats.agility);
+
+        return text;
+    }
+
+    public static string AddModifierColor(string text, int modifierValue){
+        if(modifierValue > 0) return $"<color=green>{text}</color>";
+        else return $"<color=red>{text}</color>";
     }
 }

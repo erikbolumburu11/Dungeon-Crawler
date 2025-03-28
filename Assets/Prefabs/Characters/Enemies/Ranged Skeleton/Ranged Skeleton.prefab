@@ -147,6 +147,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponInfo: {fileID: 11400000, guid: 2261c26adf1fdd7449b7606d655d6378, type: 2}
+  owner: {fileID: 0}
 --- !u!1001 &5371629270006576319
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -175,6 +176,10 @@ PrefabInstance:
       propertyPath: weaponAnimator
       value: 
       objectReference: {fileID: 7230313254113609627}
+    - target: {fileID: 2945042538001865413, guid: 6c78634803b59c9479135970fb4e7c1f, type: 3}
+      propertyPath: allyDetectionRange
+      value: 16
+      objectReference: {fileID: 0}
     - target: {fileID: 3300345553483758503, guid: 6c78634803b59c9479135970fb4e7c1f, type: 3}
       propertyPath: startingWeapon
       value: 

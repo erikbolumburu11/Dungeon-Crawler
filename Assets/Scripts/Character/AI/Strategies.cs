@@ -114,3 +114,42 @@ public class PatrolStrategy : IStrategy {
         return Node.Status.Running;
     }
 }
+
+public class FollowStrategy : IStrategy {
+    Agent agent;
+    GridTile destinationTile;
+    PlayerBrain playerBrain;
+
+    public FollowStrategy(Agent agent){
+        this.agent = agent;
+    }
+
+    public Node.Status Process() {
+        if(playerBrain == null){
+            playerBrain = GameObject.FindObjectOfType<PlayerBrain>();
+            if(playerBrain == null) return Node.Status.Failure;
+        } 
+
+        GameObject player = playerBrain.gameObject;
+
+        if(destinationTile != null && Vector2.Distance(destinationTile.worldPosition, player.transform.position) < 4){
+            agent.SetDestination(destinationTile);
+            return Node.Status.Running;
+        }
+
+        int playerXPos = Mathf.FloorToInt(player.transform.position.x);
+        int playerYPos = Mathf.FloorToInt(player.transform.position.y);
+
+        agent.currentPath = null;
+        while(agent.currentPath == null){
+            int randomX = UnityEngine.Random.Range(-2, 2);
+            int randomY = UnityEngine.Random.Range(-2, 2);
+
+            destinationTile = PathfindingGrid.instance.tiles[playerXPos + randomX, playerYPos + randomY];
+
+            agent.SetDestination(destinationTile);
+        }
+
+        return Node.Status.Running;
+    }
+}

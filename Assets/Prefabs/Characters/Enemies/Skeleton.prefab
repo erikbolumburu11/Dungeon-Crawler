@@ -12,6 +12,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Skeleton
       objectReference: {fileID: 0}
+    - target: {fileID: 2945042538001865413, guid: 6c78634803b59c9479135970fb4e7c1f, type: 3}
+      propertyPath: allyDetectionRange
+      value: 16
+      objectReference: {fileID: 0}
     - target: {fileID: 6444346010327309317, guid: 6c78634803b59c9479135970fb4e7c1f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 8.760159

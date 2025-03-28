@@ -14,6 +14,8 @@ public class WeaponInfo : ItemInfo
     public GameObject prefab;
     public RuntimeAnimatorController animator;
 
+    public AudioClip attackSound;
+
     public DamageType damageType = DamageType.PHYSICAL;
 
     bool IsRanged => false;

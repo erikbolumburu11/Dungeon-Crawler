@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class MeleeWeaponBehaviour : WeaponBehaviour
 {
+    void Awake()
+    {
+        owner = GetOwner();
+    }
+
     void OpenHitbox(){
         BoxCollider2D weaponHitbox = GetComponentInChildren<BoxCollider2D>();
         if(weaponHitbox == null) return;

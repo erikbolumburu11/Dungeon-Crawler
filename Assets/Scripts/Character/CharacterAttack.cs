@@ -22,6 +22,9 @@ public class CharacterAttack : MonoBehaviour
 
             EquippableWeaponInfo equippedWeapon = characterWeapons.GetEquippedWeaponInfo();
 
+            if(equippedWeapon.attackSound != null)
+                SoundFXManager.instance.PlaySoundFXClip(equippedWeapon.attackSound, transform, 1.0f, 0.2f);
+
             // Sprite Animation
             if(equippedWeapon.hasSpriteAnimation){
                 if(characterWeapons.GetInstantiatedWeapon() != null){

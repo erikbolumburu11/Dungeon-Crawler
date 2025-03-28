@@ -24,7 +24,11 @@ public class RangedWeaponBehaviour : WeaponBehaviour
         );
 
         projectile.GetComponent<ProjectileBehaviour>()
-            .SetProjectileInfo(projectileInfo, GetComponent<TeamComponent>().team);
+            .SetProjectileInfo(projectileInfo, GetComponent<TeamComponent>().team, GetOwner());
     }
 
+
+    public GameObject GetOwner(){
+        return GetComponentInParent<CharacterAttack>().gameObject;
+    }
 }

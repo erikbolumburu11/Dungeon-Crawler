@@ -24,6 +24,10 @@ PrefabInstance:
       propertyPath: weaponAnimator
       value: 
       objectReference: {fileID: 8572303154231910601}
+    - target: {fileID: 2945042538001865413, guid: 6c78634803b59c9479135970fb4e7c1f, type: 3}
+      propertyPath: allyDetectionRange
+      value: 16
+      objectReference: {fileID: 0}
     - target: {fileID: 3300345553483758503, guid: 6c78634803b59c9479135970fb4e7c1f, type: 3}
       propertyPath: startingWeapon
       value: 

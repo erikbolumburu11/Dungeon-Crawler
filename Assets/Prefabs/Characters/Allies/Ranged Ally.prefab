@@ -147,6 +147,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponInfo: {fileID: 11400000, guid: 1d3ff839d0838d94392eaabebaf8590a, type: 2}
+  owner: {fileID: 0}
 --- !u!1 &8050491983161902084
 GameObject:
   m_ObjectHideFlags: 0
@@ -401,7 +402,8 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7730465466779873427, guid: 6c78634803b59c9479135970fb4e7c1f, type: 3}
     m_RemovedGameObjects:
     - {fileID: 8681454039880069556, guid: 6c78634803b59c9479135970fb4e7c1f, type: 3}
     - {fileID: 4698882350324124312, guid: 6c78634803b59c9479135970fb4e7c1f, type: 3}
@@ -414,6 +416,9 @@ PrefabInstance:
       insertIndex: 1
       addedObject: {fileID: 3027012124393866962}
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 674737629572272871, guid: 6c78634803b59c9479135970fb4e7c1f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4048763392476303401}
     - targetCorrespondingSourceObject: {fileID: 2787598369070312462, guid: 6c78634803b59c9479135970fb4e7c1f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4159722684442067127}
@@ -423,11 +428,44 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6444346010327309317, guid: 6c78634803b59c9479135970fb4e7c1f, type: 3}
   m_PrefabInstance: {fileID: 5371629270006576319}
   m_PrefabAsset: {fileID: 0}
+--- !u!61 &3631746854558855657 stripped
+BoxCollider2D:
+  m_CorrespondingSourceObject: {fileID: 8713711949680624982, guid: 6c78634803b59c9479135970fb4e7c1f, type: 3}
+  m_PrefabInstance: {fileID: 5371629270006576319}
+  m_PrefabAsset: {fileID: 0}
 --- !u!198 &4553513940449328217 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 8483243007738398950, guid: 6c78634803b59c9479135970fb4e7c1f, type: 3}
   m_PrefabInstance: {fileID: 5371629270006576319}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &4888369396225648216 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 674737629572272871, guid: 6c78634803b59c9479135970fb4e7c1f, type: 3}
+  m_PrefabInstance: {fileID: 5371629270006576319}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4048763392476303401
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4888369396225648216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e7d0d10d87d66b4f9efcad78f7447df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  teamComponent: {fileID: 0}
+  agentInfo: {fileID: 11400000, guid: 3e2206ddd6c7ea945a0fce93422e3b29, type: 2}
+  spatialQueryField: {fileID: 0}
+  movementCollider: {fileID: 3631746854558855657}
+  target: {fileID: 0}
+  posEnemyLastVisible: {x: 0, y: 0, z: 0}
+  experienceGivenOnDeath: 100
+  currentStateName: 
+  drawPath: 0
+  drawAgentInfo: 0
+  drawDetectRange: 0
 --- !u!1 &7792447464882165937 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2787598369070312462, guid: 6c78634803b59c9479135970fb4e7c1f, type: 3}

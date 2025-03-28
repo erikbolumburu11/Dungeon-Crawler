@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06ce101e939ae9b41adfbc85bfe8dd1f, type: 3}
+  m_Name: BouncingFireballProjectileInfo
+  m_EditorClassIdentifier: 
+  name: Bouncing Fireball Projectile
+  image: {fileID: 0}
+  equipSlot: 4
+  prefab: {fileID: 5680174691170326385, guid: 9047300b2760cc544a7e4d6d545990ce, type: 3}
+  animator: {fileID: 0}
+  attackSound: {fileID: 0}
+  damageType: 1
+  hitCooldown: 0.1
+  damage: 50
+  knockbackForce: 15
+  key: BouncingFireballProjectile
+  speed: 20
+  destroyedOnLevelCollision: 1
+  onHitEffectPrefab: {fileID: 6048459707290869255, guid: e4bef83410b525f4f801a004eb93933f, type: 3}

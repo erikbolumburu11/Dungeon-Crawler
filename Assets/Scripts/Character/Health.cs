@@ -24,7 +24,7 @@ public class Health : MonoBehaviour
         if(health <= 0) Destroy(gameObject);
     }
 
-    public void Damage(WeaponInfo hitByWeapon, CharacterStatistics hitByCharStats){
+    public void Damage(WeaponInfo hitByWeapon, CharacterStatistics hitByCharStats, GameObject weaponOwner){
         if(!canBeHit) return;
 
         health -= CalculateDamage(hitByWeapon.damage, hitByWeapon.damageType, hitByCharStats);
@@ -35,6 +35,13 @@ public class Health : MonoBehaviour
 
         ValueBarUI healthBar = GetComponentInChildren<ValueBarUI>();
         if(healthBar != null && healthBar.CompareTag("Healthbar")) healthBar.UpdateDisplay(health, maxHealth);
+
+        if(TryGetComponent(out TargetSelection targetSelection)){
+            targetSelection.recentHitEntries.Add(new HitEntry(
+                Time.time,
+                weaponOwner
+            ));
+        }
     }
 
     public void Damage(int damage, float hitCooldown, DamageType damageType, CharacterStatistics hitByCharStats){
@@ -85,7 +92,7 @@ public class Health : MonoBehaviour
 
             if(myTeam != otherTeam || otherTeam == Team.NEUTRAL){
                 CharacterStatistics hitByCharStats = other.GetComponentInParent<CharacterStatistics>();
-                Damage(weaponBehaviour.weaponInfo, hitByCharStats);
+                Damage(weaponBehaviour.weaponInfo, hitByCharStats, weaponBehaviour.owner);
 
                 if(TryGetComponent(out Knockback knockback))
                     knockback.Invoke(weaponBehaviour.weaponInfo.knockbackForce, other.gameObject);

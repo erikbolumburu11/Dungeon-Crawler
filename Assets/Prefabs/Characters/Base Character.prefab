@@ -97,6 +97,8 @@ GameObject:
   - component: {fileID: 6582027624896992952}
   - component: {fileID: 5522061963849076440}
   - component: {fileID: 1302747250837267742}
+  - component: {fileID: 2945042538001865413}
+  - component: {fileID: 9221129800622667419}
   m_Layer: 0
   m_Name: Base Character
   m_TagString: Character
@@ -424,6 +426,42 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weapon: {fileID: 5215464591580098331}
   weaponLookOrbit: {fileID: 3515600785542883782}
+--- !u!114 &2945042538001865413
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 674737629572272871}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8280a6d366b898647a9169fce4a5dbc9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitForgivenessTime: 5
+  allyDetectionRange: 16
+--- !u!114 &9221129800622667419
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 674737629572272871}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25db47110e7120e4295522c126943ae6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dropTable:
+  - item: {fileID: 11400000, guid: 9bc5f85fcc732544398e902ba8a17fad, type: 2}
+    chance: 0.1
+  - item: {fileID: 11400000, guid: 3ea6d17e21311e142b191da63c479c5b, type: 2}
+    chance: 0.1
+  - item: {fileID: 11400000, guid: 407ba8d6aa7c3e445951b2ac69d8ea8a, type: 2}
+    chance: 0.1
+  - item: {fileID: 11400000, guid: 1d89fe41bc3818642a5de90169337de7, type: 2}
+    chance: 0.1
+  itemDropPrefab: {fileID: 3986329379486679781, guid: 3aa4b78fab28e35429d1794b833decfe, type: 3}
 --- !u!1 &744716109532400625
 GameObject:
   m_ObjectHideFlags: 0
@@ -905,6 +943,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponInfo: {fileID: 11400000, guid: 2261c26adf1fdd7449b7606d655d6378, type: 2}
+  owner: {fileID: 0}
 --- !u!1 &5785752633586275348
 GameObject:
   m_ObjectHideFlags: 0
@@ -1152,6 +1191,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponInfo: {fileID: 11400000, guid: 2261c26adf1fdd7449b7606d655d6378, type: 2}
+  owner: {fileID: 0}
 --- !u!1 &7933277950484123986
 GameObject:
   m_ObjectHideFlags: 0
