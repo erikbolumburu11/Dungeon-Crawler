@@ -80,6 +80,14 @@ PrefabInstance:
       propertyPath: characterLevels.Array.data[0].abilityUnlocked
       value: 
       objectReference: {fileID: 11400000, guid: 4dd00b71aa72e44429a0e6e6e3c7c039, type: 2}
+    - target: {fileID: 3551491644657043901, guid: c9374e69ef32c484fb620525e58257e4, type: 3}
+      propertyPath: characterLevels.Array.data[1].abilityUnlocked
+      value: 
+      objectReference: {fileID: 11400000, guid: 4355a74319a751b4c9211eb6aaede4ac, type: 2}
+    - target: {fileID: 3551491644657043901, guid: c9374e69ef32c484fb620525e58257e4, type: 3}
+      propertyPath: characterLevels.Array.data[2].abilityUnlocked
+      value: 
+      objectReference: {fileID: 11400000, guid: a8e0eb3c1e607d2469438edae9500446, type: 2}
     - target: {fileID: 6159313495172074182, guid: c9374e69ef32c484fb620525e58257e4, type: 3}
       propertyPath: m_LocalPosition.x
       value: -11.054761

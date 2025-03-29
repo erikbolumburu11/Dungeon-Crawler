@@ -6246,6 +6246,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   equippedAbilites: []
+  maxTraps: 3
+  placedTraps: []
 --- !u!114 &3164572794237338416
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6420,6 +6422,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 200
   health: 200
+  armour: 0
   onHitEvent:
     m_PersistentCalls:
       m_Calls:

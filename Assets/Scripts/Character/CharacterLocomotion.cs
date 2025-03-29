@@ -6,7 +6,8 @@ using UnityEngine;
 public enum StatusEffect {
     KNOCKED_BACK,
     CHARGING,
-    STUNNED
+    STUNNED,
+    INVINCIBLE
 }
 
 public class CharacterLocomotion : MonoBehaviour
@@ -40,6 +41,8 @@ public class CharacterLocomotion : MonoBehaviour
         bodyAnimator.SetBool("Moving", moveDir.magnitude > 0);
 
         UpdateMoveSpeed();
+
+        if(!CanMove()) SetMoveDirection(Vector2.zero);
     }
 
     private void UpdateMoveSpeed()
@@ -50,8 +53,44 @@ public class CharacterLocomotion : MonoBehaviour
 
     void FixedUpdate() {
         if(!CanMove()) return;
+        if(moveDir == Vector2.zero){
+            rigidBody.velocity = Vector2.zero;
+            return;
+        } 
 
-        rigidBody.velocity = moveDir * moveSpeed;
+        // Object Avoidance
+        float coneSpreadAngle = 30f;
+        int rayCount = 3;
+        Vector2 longestDir = moveDir;
+        float longestLength = 0;
+        for (int i = -1; i < rayCount - 1; i++)
+        {
+            float shotAngleOffset = coneSpreadAngle * i; 
+            Vector3 rayDir = Quaternion.AngleAxis(shotAngleOffset, Vector3.forward) * moveDir;
+            
+            Debug.DrawRay(transform.position, rayDir.normalized, Color.red);
+
+            float rayLength;
+            if(i == 0) rayLength = 1.5f;
+            else rayLength = 1f;
+
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, rayDir, rayLength);
+
+            if(hit.collider == null){
+                if(rayLength > longestLength){
+                    longestLength = rayLength;
+                    longestDir = rayDir;
+                }
+            }
+            else{
+                if(Vector2.Distance(transform.position, hit.point) > longestLength){
+                    longestLength = Vector2.Distance(transform.position, hit.point);
+                    longestDir = rayDir;
+                }
+            }
+        }
+
+        rigidBody.velocity = longestDir.normalized * moveSpeed;
     }
 
     void SetLookDirection(){
@@ -96,4 +135,5 @@ public class CharacterLocomotion : MonoBehaviour
             GetStatusEffect(StatusEffect.STUNNED)
         );
     }
+
 }

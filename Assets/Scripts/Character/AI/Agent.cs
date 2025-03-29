@@ -86,7 +86,6 @@ public class Agent : MonoBehaviour
         );
     }
 
-
     public void ResetDestination()
     {
         destinationTile = null;
@@ -99,7 +98,7 @@ public class Agent : MonoBehaviour
         } 
 
         GridTile nextTileInPath = currentPath.Peek();
-        if(Vector3.Distance(transform.position, nextTileInPath.worldPosition) < 0.05f){
+        if(Vector3.Distance(transform.position, nextTileInPath.worldPosition) < 0.3f){
             currentPath.Pop();
         }
         Vector2 moveDir = (nextTileInPath.worldPosition - transform.position).normalized;

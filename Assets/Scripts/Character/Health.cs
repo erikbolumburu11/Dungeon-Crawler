@@ -7,13 +7,16 @@ public class Health : MonoBehaviour
 {
     [SerializeField] int maxHealth;
     [SerializeField] int health;
+    public int armour;
     bool canBeHit = true;
     [SerializeField] UnityEvent onHitEvent;
     CharacterStatistics characterStatistics;
+    CharacterLocomotion characterLocomotion;
 
     void Awake()
     {
         characterStatistics = GetComponent<CharacterStatistics>();
+        characterLocomotion = GetComponent<CharacterLocomotion>();
     }
 
     void Start(){
@@ -27,7 +30,13 @@ public class Health : MonoBehaviour
     public void Damage(WeaponInfo hitByWeapon, CharacterStatistics hitByCharStats, GameObject weaponOwner){
         if(!canBeHit) return;
 
-        health -= CalculateDamage(hitByWeapon.damage, hitByWeapon.damageType, hitByCharStats);
+        int trueDamage = hitByWeapon.damage - armour;
+        armour -= hitByWeapon.damage;
+
+        if(armour < 0) armour = 0;
+        if(trueDamage < 0) return;
+
+        health -= CalculateDamage(trueDamage, hitByWeapon.damageType, hitByCharStats);
 
         StartCoroutine(StartHitCooldown(hitByWeapon.hitCooldown));
 
@@ -46,8 +55,15 @@ public class Health : MonoBehaviour
 
     public void Damage(int damage, float hitCooldown, DamageType damageType, CharacterStatistics hitByCharStats){
         if(!canBeHit) return;
+        if(characterLocomotion.GetStatusEffect(StatusEffect.INVINCIBLE)) return;
 
-        health -= CalculateDamage(damage, damageType, hitByCharStats);
+        int trueDamage = damage - armour;
+        armour -= damage;
+
+        if(armour < 0) armour = 0;
+        if(trueDamage < 0) return;
+
+        health -= CalculateDamage(trueDamage, damageType, hitByCharStats);
 
         StartCoroutine(StartHitCooldown(hitCooldown));
 

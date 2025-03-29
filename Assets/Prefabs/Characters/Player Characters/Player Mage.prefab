@@ -89,6 +89,10 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3551491644657043901, guid: c9374e69ef32c484fb620525e58257e4, type: 3}
+      propertyPath: characterLevels.Array.data[2].abilityUnlocked
+      value: 
+      objectReference: {fileID: 11400000, guid: 55ccffc78cf858e4bb5f9717af977c0e, type: 2}
+    - target: {fileID: 3551491644657043901, guid: c9374e69ef32c484fb620525e58257e4, type: 3}
       propertyPath: characterLevels.Array.data[2].agilityIncrease
       value: 1
       objectReference: {fileID: 0}
@@ -103,7 +107,7 @@ PrefabInstance:
     - target: {fileID: 3551491644657043901, guid: c9374e69ef32c484fb620525e58257e4, type: 3}
       propertyPath: characterLevels.Array.data[4].abilityUnlocked
       value: 
-      objectReference: {fileID: 11400000, guid: 55ccffc78cf858e4bb5f9717af977c0e, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 3551491644657043901, guid: c9374e69ef32c484fb620525e58257e4, type: 3}
       propertyPath: characterLevels.Array.data[4].defenseIncrease
       value: 2

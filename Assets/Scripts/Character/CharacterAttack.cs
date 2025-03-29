@@ -7,14 +7,17 @@ public class CharacterAttack : MonoBehaviour
     [SerializeField] GameObject weapon;
     Animator weaponSwingAnimator;
     [SerializeField] GameObject weaponLookOrbit;
+    CharacterLocomotion characterLocomotion;
     bool attackRequested;
 
     void Start(){
         weaponSwingAnimator = weapon.GetComponent<Animator>();
+        characterLocomotion = GetComponent<CharacterLocomotion>();
     }
 
     public void Attack(){
         if(IsAttacking()) return;
+        if(!CanAttack()) return;
 
         // Use Equipped Weapon To Attack
         if(TryGetComponent(out CharacterWeapons characterWeapons)){
@@ -88,5 +91,13 @@ public class CharacterAttack : MonoBehaviour
             return isSpriteAnimating || isSwingAnimating;
         }
         return false;
+    }
+
+    bool CanAttack(){
+        return !(
+            characterLocomotion.GetStatusEffect(StatusEffect.KNOCKED_BACK) || 
+            characterLocomotion.GetStatusEffect(StatusEffect.CHARGING) ||
+            characterLocomotion.GetStatusEffect(StatusEffect.STUNNED)
+        );
     }
 }

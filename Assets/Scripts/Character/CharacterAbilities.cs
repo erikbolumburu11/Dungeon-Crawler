@@ -7,9 +7,13 @@ public class CharacterAbilities : MonoBehaviour
     public List<AbilityInfo> equippedAbilites;
     public Dictionary<int, bool> readyToCast;
 
+    public int maxTraps;
+    public List<GameObject> placedTraps;
+
     void Awake()
     {
        readyToCast = new();
+       placedTraps = new();
     }
 
     public void CastAbility(int index){

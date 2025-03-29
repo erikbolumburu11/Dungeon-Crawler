@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilityName: Bouncing Fireball
   abilityActionKey: BouncingFireball
-  abilityCooldown: 0.75
+  abilityCooldown: 4
   hasMaxCastRange: 0
   maxCastRange: 0
   projectileCount: 1
