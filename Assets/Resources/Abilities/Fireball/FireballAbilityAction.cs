@@ -12,11 +12,13 @@ public class FireballAbilityAction : AbilityAction
         if(projectileInfo == null) return;
         
         Vector2 playerPos = castData.caster.transform.position;
-        Vector3 mouseDir = Utilities.GetDirectionToMouse(playerPos);
+        Vector2 castPos = new(playerPos.x, playerPos.y + 1f);
+
+        Vector3 mouseDir = Utilities.GetDirectionToMouse(castPos);
 
         GameObject projectile = GameObject.Instantiate(
             projectileInfo.prefab,
-            playerPos,
+            castPos,
             Quaternion.LookRotation(Vector3.forward, mouseDir)
         );
 

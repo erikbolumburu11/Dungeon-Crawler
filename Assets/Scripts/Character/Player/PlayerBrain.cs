@@ -8,9 +8,12 @@ public class PlayerBrain : MonoBehaviour
 
     [SerializeField] InputActionReference moveInput;
     [SerializeField] InputActionReference attackInput;
+
+
     [SerializeField] InputActionReference castAbility1Input;
     [SerializeField] InputActionReference castAbility2Input;
     [SerializeField] InputActionReference castAbility3Input;
+
 
     void Start()
     {
@@ -67,4 +70,5 @@ public class PlayerBrain : MonoBehaviour
         if(TryGetComponent(out CharacterAbilities abilities)) 
             abilities.CastAbility(2);
     }
+
 }

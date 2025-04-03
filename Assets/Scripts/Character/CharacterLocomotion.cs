@@ -22,6 +22,10 @@ public class CharacterLocomotion : MonoBehaviour
     public float moveSpeed;
     float baseMoveSpeed;
 
+    public int objectAvoidanceRayCount = 3;
+    public float objectAvoidanceRayLength = 1;
+    public float objectAvoidanceConeAngle = 30;
+
     public Dictionary<StatusEffect, bool> statusEffects;
 
     Vector2 moveDir;
@@ -38,11 +42,16 @@ public class CharacterLocomotion : MonoBehaviour
     {
         SetLookDirection();
 
-        bodyAnimator.SetBool("Moving", moveDir.magnitude > 0);
+        bodyAnimator.SetBool("Moving", moveDir.magnitude > 0.2f);
 
         UpdateMoveSpeed();
 
         if(!CanMove()) SetMoveDirection(Vector2.zero);
+        if(statusEffects.ContainsKey(StatusEffect.STUNNED) && statusEffects[StatusEffect.STUNNED]){
+            bodyAnimator.SetBool("Moving", false);
+            rigidBody.velocity = Vector2.zero;
+        }
+
     }
 
     private void UpdateMoveSpeed()
@@ -54,27 +63,34 @@ public class CharacterLocomotion : MonoBehaviour
     void FixedUpdate() {
         if(!CanMove()) return;
         if(moveDir == Vector2.zero){
-            rigidBody.velocity = Vector2.zero;
+            if(statusEffects.ContainsKey(StatusEffect.CHARGING)){
+                if(statusEffects[StatusEffect.CHARGING] == false){
+                    rigidBody.velocity = Vector2.zero;
+                }
+            }
+            else{
+                rigidBody.velocity = Vector2.zero;
+            }
             return;
         } 
 
         // Object Avoidance
-        float coneSpreadAngle = 30f;
-        int rayCount = 3;
         Vector2 longestDir = moveDir;
         float longestLength = 0;
-        for (int i = -1; i < rayCount - 1; i++)
+        int middleRay = Mathf.FloorToInt(objectAvoidanceRayCount / 2);
+        for (int i = -middleRay; i < objectAvoidanceRayCount - middleRay; i++)
         {
-            float shotAngleOffset = coneSpreadAngle * i; 
+            float shotAngleOffset = objectAvoidanceConeAngle * i; 
             Vector3 rayDir = Quaternion.AngleAxis(shotAngleOffset, Vector3.forward) * moveDir;
             
-            Debug.DrawRay(transform.position, rayDir.normalized, Color.red);
 
             float rayLength;
-            if(i == 0) rayLength = 1.5f;
-            else rayLength = 1f;
+            if(i == 0) rayLength = objectAvoidanceRayLength + 1.5f;
+            else rayLength = objectAvoidanceRayLength;
 
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, rayDir, rayLength);
+            Debug.DrawRay(transform.position, rayDir.normalized * rayLength, Color.red);
+
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, rayDir * rayLength, rayLength);
 
             if(hit.collider == null){
                 if(rayLength > longestLength){

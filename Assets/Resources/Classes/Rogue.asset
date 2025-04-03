@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   className: Rogue
   prefab: {fileID: 5208770086595464270, guid: 9b6540d8b464c474889c701b13204081, type: 3}
+  previewSprite: {fileID: 1029235304, guid: 67a15bfc6fd0ecf4bad1bd3667a5e1e7, type: 3}

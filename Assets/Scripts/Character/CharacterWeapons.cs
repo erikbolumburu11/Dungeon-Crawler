@@ -13,6 +13,10 @@ public class CharacterWeapons : MonoBehaviour
 
     void Awake(){
         inventory = GetComponent<Inventory>();
+    }
+
+    void Start()
+    {
         if(startingWeapon == null) return;
         EquipWeapon(startingWeapon);
     }

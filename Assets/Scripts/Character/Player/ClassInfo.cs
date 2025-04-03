@@ -7,4 +7,5 @@ public class ClassInfo : ScriptableObject
 {
     public string className;
     public GameObject prefab;
+    public Sprite previewSprite;
 }

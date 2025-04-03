@@ -13,6 +13,11 @@ public class GameManager : MonoBehaviour
         else Destroy(this);
     }
 
+    void Start()
+    {
+        CharacterSpawner.SpawnPlayerCharacter(PersistanceManager.instance.selectedClassInfo);
+    }
+
     public static GameObject GetPlayerObject(){
         return FindAnyObjectByType<PlayerBrain>().gameObject;
     }

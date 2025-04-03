@@ -14,10 +14,13 @@ public class Agent : MonoBehaviour
     LookAtPos lookAtPos;
     TargetSelection targetSelection;
 
-    [SerializeField] Collider2D movementCollider;
+    public Collider2D movementCollider;
 
     public Stack<GridTile> currentPath;
     protected GridTile destinationTile;
+
+    public GridTile spawnTile;
+    bool spawnTileInitialized;
 
     public GameObject target;
 
@@ -27,6 +30,7 @@ public class Agent : MonoBehaviour
 
     public float experienceGivenOnDeath;
     public const float XPRANGE = 50;
+
 
     [Header("Debug")]
     [SerializeField] string currentStateName;
@@ -46,14 +50,27 @@ public class Agent : MonoBehaviour
         TeamComponent.AddToTeamObjectList(gameObject);
     }
 
-    public void OnDestroy(){
+    void Start()
+    {
+    }
+
+    public virtual void OnDestroy(){
         TeamComponent.RemoveFromTeamObjectList(gameObject);
         GiveExperience();
     }
 
     void Update() {
+        if(!spawnTileInitialized){
+            if(PathfindingGrid.instance.tiles != null){
+                spawnTile = PathfindingGrid.GetTileAtWorldPosition(transform.position);
+                spawnTileInitialized = true;
+            }
+        }
+
+        if(Time.time > 5 && Time.time - timeEnemyLastVisible > 3) target = null;
+
         tree.Process();
-        currentStateName = tree.GetRunningNode().name;
+        //currentStateName = tree.GetRunningNode().name;
 
         if(locomotion != null) MoveToDestination();        
 
@@ -142,11 +159,10 @@ public class Agent : MonoBehaviour
     }
 
     public bool IsInCombat(){
-        if(
-            !GetVisibleEnemies().IsNullOrEmpty() || 
-            (Time.time > 5 && Time.time - timeEnemyLastVisible < 5) ||
-            targetSelection.recentHitEntries.Count > 0
-        ) return true;
+        if(!GetVisibleEnemies().IsNullOrEmpty()) return true;
+        if(Time.time > 5 && Time.time - timeEnemyLastVisible < 5) return true;
+        if(targetSelection != null && targetSelection.recentHitEntries.Count > 0) return true;
+        if(target != null) return true;
 
         return false;
     }

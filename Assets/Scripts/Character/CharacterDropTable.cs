@@ -14,8 +14,7 @@ public class CharacterDropTable : MonoBehaviour
     [SerializeField] public List<DropTableEntry> dropTable; // {Item, Chance}
     [SerializeField] WorldItemDescription itemDropPrefab;
 
-    public void OnDestroy()
-    {
+    public void SelectAndSpawnDrops(){
         foreach (DropTableEntry drop in dropTable)
         {
             float rand = UnityEngine.Random.Range(0.0f, 1.0f);

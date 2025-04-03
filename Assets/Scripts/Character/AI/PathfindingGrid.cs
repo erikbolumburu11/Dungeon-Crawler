@@ -52,10 +52,10 @@ public class PathfindingGrid : MonoBehaviour
     void Awake(){
         if(instance == null) instance = this;
         else Destroy(this);
+        InitializeGrid();
     }
 
     void Start(){
-        InitializeGrid();
     }
 
     void InitializeGrid(){

@@ -13,6 +13,10 @@ public class Health : MonoBehaviour
     CharacterStatistics characterStatistics;
     CharacterLocomotion characterLocomotion;
 
+    bool hasHitCooldown = true;
+
+    [SerializeField] GameObject deathScreenPrefab;
+
     void Awake()
     {
         characterStatistics = GetComponent<CharacterStatistics>();
@@ -24,7 +28,23 @@ public class Health : MonoBehaviour
     }
 
     void Update(){
-        if(health <= 0) Destroy(gameObject);
+        if(health <= 0) Death();
+    }
+
+    void Death(){
+        if(TryGetComponent(out CharacterDropTable characterDropTable)){
+            characterDropTable.SelectAndSpawnDrops();
+        }
+
+        if(TryGetComponent(out PlayerBrain _)){
+            Transform canvasTransform = GameObject.FindWithTag("GlobalUI").transform;
+            Instantiate(deathScreenPrefab, canvasTransform);
+
+            if(PersistanceManager.instance != null)
+                PersistanceManager.instance.GotoMainMenuAfterTime(4f);
+        }
+
+        Destroy(gameObject);
     }
 
     public void Damage(WeaponInfo hitByWeapon, CharacterStatistics hitByCharStats, GameObject weaponOwner){
@@ -38,7 +58,7 @@ public class Health : MonoBehaviour
 
         health -= CalculateDamage(trueDamage, hitByWeapon.damageType, hitByCharStats);
 
-        StartCoroutine(StartHitCooldown(hitByWeapon.hitCooldown));
+        if(hasHitCooldown) StartCoroutine(StartHitCooldown(hitByWeapon.hitCooldown));
 
         onHitEvent.Invoke();
 
@@ -89,8 +109,10 @@ public class Health : MonoBehaviour
         }
 
         if(characterStatistics != null){
-            damage -= characterStatistics.GetStatistics().defense;
+            damage -= Mathf.FloorToInt(characterStatistics.GetStatistics().defense / 5);
         }
+
+        if(damage < 0) damage = 0;
 
         return damage;
     }

@@ -78,9 +78,27 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "Toggle Pause Menu",
+                    "type": "Button",
+                    "id": "40dffb0f-5fce-4bfa-86ed-ddbf88695070",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Pickup Item",
                     "type": "Button",
                     "id": "41e40a55-cce5-4791-9917-c67ec982ff3b",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Talk",
+                    "type": "Button",
+                    "id": "59e81cf9-f46a-4825-a8f1-d43919e4d26c",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -255,6 +273,28 @@
                 },
                 {
                     "name": "",
+                    "id": "394bc0ba-ccfc-4432-a5c0-623ac3af85b2",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Toggle Pause Menu",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0cd56921-1760-4935-a39c-a4dd9e812148",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Toggle Pause Menu",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "4356680a-78a9-491f-a621-0b3903154772",
                     "path": "",
                     "interactions": "",
@@ -272,6 +312,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "Pickup Item",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b233f60b-ac7b-4e8e-a1f4-b7a1b10a86e3",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Talk",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "cfb79e59-f838-4bee-8f62-26713190d468",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Talk",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

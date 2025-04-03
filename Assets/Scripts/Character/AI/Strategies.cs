@@ -91,8 +91,10 @@ public class PatrolStrategy : IStrategy {
     public Node.Status Process() {
         if(!wantsNewDestination) return Node.Status.Running;
 
-        int agentXPos = Mathf.FloorToInt(agent.transform.position.x);
-        int agentYPos = Mathf.FloorToInt(agent.transform.position.y);
+        if(agent.spawnTile == null) return Node.Status.Running;
+
+        int agentXPos = Mathf.FloorToInt(agent.spawnTile.worldPosition.x);
+        int agentYPos = Mathf.FloorToInt(agent.spawnTile.worldPosition.y);
 
         agent.currentPath = null;
         while(agent.currentPath == null){

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
@@ -18,11 +19,16 @@ public class UIManager : MonoBehaviour
     [SerializeField] InputActionReference toggleInventoryDisplay;
     [SerializeField] GameObject inventoryDisplay;
 
+    bool pauseMenuOpen;
+    [SerializeField] InputActionReference togglePauseMenu;
+    [SerializeField] GameObject pauseMenu;
+
     void OnEnable()
     {
         toggleCharacterDisplay.action.started += ToggleCharacterDisplay;
         toggleAbilityDescriptionDisplay.action.started += ToggleAbilityDisplay;
         toggleInventoryDisplay.action.started += ToggleInventoryDisplay;
+        togglePauseMenu.action.started += TogglePauseMenu;
     }
 
     void OnDisable()
@@ -30,6 +36,7 @@ public class UIManager : MonoBehaviour
         toggleCharacterDisplay.action.started -= ToggleCharacterDisplay;
         toggleAbilityDescriptionDisplay.action.started -= ToggleAbilityDisplay;
         toggleInventoryDisplay.action.started -= ToggleInventoryDisplay;
+        togglePauseMenu.action.started -= TogglePauseMenu;
     }
 
     void ToggleCharacterDisplay(InputAction.CallbackContext callbackContext){
@@ -45,5 +52,19 @@ public class UIManager : MonoBehaviour
     void ToggleInventoryDisplay(InputAction.CallbackContext callbackContext){
         inventoryScreenOpen = !inventoryScreenOpen;
         inventoryDisplay.SetActive(inventoryScreenOpen);
+    }
+
+    void TogglePauseMenu(InputAction.CallbackContext callbackContext){
+        pauseMenuOpen = !pauseMenuOpen;
+        pauseMenu.SetActive(pauseMenuOpen);
+    }
+
+    public void HidePauseMenu(){
+        pauseMenuOpen = false;
+        pauseMenu.SetActive(false);
+    }
+
+    public void ReturnToMainMenu(){
+        SceneManager.LoadScene("Main Menu");
     }
 }

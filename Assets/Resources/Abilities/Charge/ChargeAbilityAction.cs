@@ -18,13 +18,13 @@ public class ChargeAbilityAction : AbilityAction
 
         castData.caster.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
 
-        rb.AddForce(mouseDir * 30, ForceMode2D.Impulse);
-
         // NOTE: Instead of a timer, it should allow movement again when the player hits a wall or enemy.
         castData.caster.GetComponent<CharacterLocomotion>().SetStatusEffectOnTimer(
             StatusEffect.CHARGING,
             0.2f
         );
+
+        rb.AddForce(mouseDir * 30, ForceMode2D.Impulse);
 
         castData.caster.GetComponent<CharacterLocomotion>().SetStatusEffectOnTimer(
             StatusEffect.INVINCIBLE,

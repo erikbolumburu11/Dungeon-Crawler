@@ -46,7 +46,7 @@ public class TargetSelection : MonoBehaviour
         }
 
         // Ally sees enemy
-        List<GameObject> allies = TeamComponent.GetOppositeTeamObjectList(teamComponent.team);
+        List<GameObject> allies = TeamComponent.GetMatchingTeamObjectList(teamComponent.team);
         allies = allies.Where(
             x => Vector2.Distance(transform.position, x.transform.position) <= allyDetectionRange
         ).ToList();

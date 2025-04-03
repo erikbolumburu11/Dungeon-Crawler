@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   className: Mage
   prefab: {fileID: 8025250687238209355, guid: 0056fc397180ea94380249b7fbec28d4, type: 3}
+  previewSprite: {fileID: 1415672209, guid: ccff412109bff82418e5a1538283a3c4, type: 3}

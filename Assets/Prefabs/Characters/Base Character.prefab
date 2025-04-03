@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4705110978338823478}
   - component: {fileID: 4956859680820964980}
   - component: {fileID: 7085243641638367836}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -99,7 +99,7 @@ GameObject:
   - component: {fileID: 1302747250837267742}
   - component: {fileID: 2945042538001865413}
   - component: {fileID: 9221129800622667419}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Base Character
   m_TagString: Character
   m_Icon: {fileID: 0}
@@ -248,6 +248,9 @@ MonoBehaviour:
   bodyAnimator: {fileID: 899696324951233186}
   bodySprite: {fileID: 5005123822929669970}
   moveSpeed: 4.5
+  objectAvoidanceRayCount: 3
+  objectAvoidanceRayLength: 1
+  objectAvoidanceConeAngle: 30
 --- !u!114 &3355835228301824127
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -262,6 +265,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 125
   health: 125
+  armour: 0
   onHitEvent:
     m_PersistentCalls:
       m_Calls:
@@ -439,7 +443,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitForgivenessTime: 5
-  allyDetectionRange: 16
+  allyDetectionRange: 3
 --- !u!114 &9221129800622667419
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -474,7 +478,7 @@ GameObject:
   - component: {fileID: 6965612243004076938}
   - component: {fileID: 3450900219977306393}
   - component: {fileID: 5843164525185678438}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -573,7 +577,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4702976067428350070}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Fill Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -609,7 +613,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7423454847265086316}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Weapon Handle Point
   m_TagString: Weapon
   m_Icon: {fileID: 0}
@@ -642,7 +646,7 @@ GameObject:
   - component: {fileID: 2812757229274902392}
   - component: {fileID: 8713711949680624982}
   - component: {fileID: 3841553656037152290}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Movement Collision
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -753,7 +757,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1736882302538384494}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Handle Slide Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -789,7 +793,7 @@ GameObject:
   m_Component:
   - component: {fileID: 772348355712505761}
   - component: {fileID: 3912996335839006329}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Weapon Look Orbit
   m_TagString: Weapon
   m_Icon: {fileID: 0}
@@ -837,7 +841,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3335761574898284873}
   - component: {fileID: 6929844853147119482}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Weapon Look Orbit
   m_TagString: Weapon
   m_Icon: {fileID: 0}
@@ -886,7 +890,7 @@ GameObject:
   - component: {fileID: 1719400020025997489}
   - component: {fileID: 2069610819655475752}
   - component: {fileID: 3690733051647942529}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Weapon
   m_TagString: Weapon
   m_Icon: {fileID: 0}
@@ -955,7 +959,7 @@ GameObject:
   - component: {fileID: 6518700017506135044}
   - component: {fileID: 6084487581403549657}
   - component: {fileID: 3088804362814237076}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Slider
   m_TagString: Healthbar
   m_Icon: {fileID: 0}
@@ -1059,7 +1063,7 @@ GameObject:
   - component: {fileID: 3545586673071211347}
   - component: {fileID: 388244415852796087}
   - component: {fileID: 3381048067102569880}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1134,7 +1138,7 @@ GameObject:
   - component: {fileID: 9119838973951332717}
   - component: {fileID: 4358688464164689014}
   - component: {fileID: 7396884854606924949}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Weapon
   m_TagString: Weapon
   m_Icon: {fileID: 0}
@@ -1201,7 +1205,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2409019589521377937}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Weapon Handle Point
   m_TagString: Weapon
   m_Icon: {fileID: 0}
@@ -1235,7 +1239,7 @@ GameObject:
   - component: {fileID: 5005123822929669970}
   - component: {fileID: 899696324951233186}
   - component: {fileID: 379159956837965821}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1355,7 +1359,7 @@ GameObject:
   - component: {fileID: 8962012340228538249}
   - component: {fileID: 8483243007738398950}
   - component: {fileID: 4935141138119936710}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: On Hit Effect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
